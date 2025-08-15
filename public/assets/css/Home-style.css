@@ -1,0 +1,408 @@
+/* @font-face {
+  font-family: 'IRANSansXV';
+    src: url('/fonts/IRANSansXV-Regular.woff2') format('woff2'),
+        url('/fonts/IRANSansXV-Regular.woff') format('woff'),
+        url('/fonts/IRANSansXV-Regular.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+} */
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 100;
+  src: url("fonts/woff/IRANSansXFaNum-thin.woff") format("woff"),
+    url("fonts/woff2/IRANSansXFaNum-thin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 200;
+  src: url("fonts/woff/IRANSansXFaNum-UltraLight.woff") format("woff"),
+    url("fonts/woff2/IRANSansXFaNum-UltraLight.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 300;
+  src: url("fonts/woff/IRANSansXFaNum-light.woff") format("woff"),
+    url("fonts/woff2/IRANSansXFaNum-light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 500;
+  src: url("fonts/woff/IRANSansXFaNum-medium.woff") format("woff"),
+    url("fonts/woff2/IRANSansXFaNum-medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 600;
+  src: url("fonts/woff/IRANSansXFaNum-demibold.woff") format("woff"),
+    url("fonts/woff2/IRANSansXFaNum-demibold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 800;
+  src: url("fonts/woff/IRANSansXFaNum-extrabold.woff") format("woff"),
+    url("fonts/woff2/IRANSansXFaNum-extrabold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: 900;
+  src: url("fonts/woff/IRANSansXFaNum-black.woff") format("woff"),
+    url("fonts/woff2/IRANSansXFaNum-black.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: bold;
+  src: url("fonts/woff/IRANSansXFaNum-bold.woff") format("woff"),
+    url("fonts/woff2/IRANSansXFaNum-bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: IRANSansX;
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/woff/IRANSansXFaNum-regular.woff") format("woff"),
+    url("fonts/woff2/IRANSansXFaNum-regular.woff2") format("woff2");
+}
+
+.ss02 {
+  -moz-font-feature-settings: "ss02";
+  -webkit-font-feature-settings: "ss02";
+  font-feature-settings: "ss02";
+}
+
+.ss03 {
+  -moz-font-feature-settings: "ss03";
+  -webkit-font-feature-settings: "ss03";
+  font-feature-settings: "ss03";
+}
+
+body {
+  font-family: "IRANSansX";
+  /* background-color: #f8f9fa; */
+  background-color: #218DCD;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #146C94;
+}
+
+.home-dropdown:hover>.home-dropdown-menu {
+  display: block;
+  left: 0.2vw;
+}
+
+.home-dropdown-menu>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+  pointer-events: none;
+}
+
+.navbar-dropdown:hover>.navbar-dropdown-menu {
+  display: block;
+  left: 0.2vw;
+}
+
+.navbar-dropdown-menu>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+  pointer-events: none;
+}
+
+.navbar-dropdown-menu li a {
+  font-size: 14px;
+}
+
+/* general start */
+a:link {
+  text-decoration: none;
+}
+
+.card_hover {
+  transition: all 0.3s ease;
+}
+
+.card_hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.border-blue {
+  border-color: #AFD3E2 !important;
+}
+
+.border-DarkBlue {
+  border-color: #0083ca !important;
+}
+
+/* general end */
+/* header */
+.login-row {
+  text-align: left;
+}
+
+.login {
+  border: 1px solid #146C94;
+  color: rgb(28, 28, 28);
+  font-size: 15px;
+  border-radius: 30px;
+  /* padding-top: 9px; */
+  margin-top: 8px;
+  height: 35px;
+}
+
+.login:hover {
+  text-decoration: none;
+  border: 1px solid #146C94;
+  color: #146C94;
+}
+
+.home-dropdown-menu {
+  width: 400px;
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.home-dropdown-menu .dropdown-item:hover {
+  background-color: white;
+}
+
+.home-dropdown-menu .dropdown-item:active {
+  color: black;
+  text-decoration: none;
+}
+
+.drapdown-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-badge {
+  padding: 3px;
+  font-size: 12px;
+  position: absolute;
+  right: 10px;
+  /* bottom: 20px; */
+}
+
+.cart {
+  /* border: 1px solid rgb(28, 28, 28); */
+  color: rgb(74, 74, 74);
+  font-size: 20px;
+}
+
+.cart:hover {
+  text-decoration: none;
+  /* border: 1px solid rgb(227, 74, 74); */
+  color: #146C94;
+}
+
+.cart:focus {
+  text-decoration: none;
+  border: none;
+  color: rgb(74, 74, 74);
+}
+
+.search-group {
+  /* box-shadow: 0 0 8px rgb(190, 190, 190); */
+  border-radius: 10px;
+}
+
+.search-input {
+  background-color: #f0f0f1;
+}
+
+.search-input:focus {
+  box-shadow: none;
+  border: 1px solid rgb(187, 187, 187);
+  background-color: rgb(255, 255, 255);
+}
+
+.search-btn {
+  background-color: rgb(255, 255, 255);
+  color: rgb(21, 21, 21);
+}
+
+.search-btn:hover {
+  background-color: #146C94;
+  color: whitesmoke;
+}
+
+.search-btn:active {
+  background-color: #146C94;
+  color: whitesmoke;
+}
+
+/* start navbar */
+.navbar {
+  background-color: #f8f9fa;
+  border-top: none;
+  border-bottom: 3px solid #146C94;
+}
+
+.navbar i {
+  position: relative;
+  top: 2.5px;
+}
+
+.logo {
+  display: none;
+}
+
+.home-nav-item {
+  padding-left: 20px;
+}
+
+.home-nav-item a {
+  font-size: 16px;
+}
+
+.home-nav-item a:hover {
+  color: #146C94;
+}
+
+/* end navbar */
+
+/* btn start */
+.btn-blue {
+  color: #f0f0f1;
+  border: #dedede 1px solid;
+  background-color: #19A7CE;
+}
+
+.btn-blue:hover {
+  color: #f0f0f1;
+  border: #dedede 1px solid;
+  background-color: rgb(69, 184, 237);
+}
+
+.btn-DarkBlue {
+  color: #f0f0f1;
+  border: #dedede 1px solid;
+  background-color: #146C94;
+}
+
+.btn-DarkBlue:hover {
+  color: #f0f0f1;
+  border: #dedede 1px solid;
+  background-color: rgb(28, 134, 184);
+}
+
+/* btn end */
+/* services start */
+.services_header {
+  color: #ffffff;
+}
+
+/* services end */
+
+/* manager start */
+.manager_row {
+  margin-top: 5.5rem !important;
+}
+
+.manager_div {
+  max-height: 500px;
+  border-radius: 32% 68% 37% 63% / 60% 49% 51% 40%;
+  background: #146C94;
+  /* background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%); */
+  background-color: #0083ca;
+  background-image: linear-gradient(220deg, #0083ca 0%, #0ff6f9 100%);
+}
+
+.manager_header {
+  font-size: 1.5em;
+}
+
+/* manager end */
+/* workshops start */
+.image_border {
+  border-color: #0083ca !important;
+}
+
+/* workshops end */
+
+
+
+/* footet */
+footer {
+  background-color: #146C94;
+}
+
+.footer h6 {
+  margin-right: 40px;
+}
+
+footer a {
+  color: rgb(211, 211, 211);
+}
+
+.footer a:link {
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: none;
+  color: #0ff6f9;
+}
+
+.footer i {
+  color: rgba(211, 211, 211);
+  margin: 15px;
+}
+
+.footer i:hover {
+  color: #146C94;
+}
+
+.splide__pagination {
+  display: none;
+}
+
+@media screen and (width < 992px) {
+  .Jumbotron-div {
+    display: none;
+  }
+
+  .logo {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .manager_btn {
+    width: 100%;
+  }
+
+  .manager_div {
+    width: 80% !important;
+  }
+
+  .manager_div img {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 576px) {}

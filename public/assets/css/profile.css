@@ -1,0 +1,68 @@
+/* sidebar */
+
+.filter-col {
+  position: sticky;
+  top: 0px;
+  height: 100%;
+}
+.sidebar {
+  top: 0px;
+  background-color: white;
+  padding-top: 10px;
+  border-radius: 10px;
+  height: 100%;
+}
+.sidebar p {
+  font-size: 17px;
+}
+
+/* list-group */
+.list-group .list-group-item {
+  border: none;
+  padding-right: 20px;
+  font-size: 15px;
+}
+.list-group-item i {
+  font-size: large;
+  margin-left: 8px;
+}
+
+/* dashboard */
+.profile-card{
+    border: none;
+}
+.profile-card .card-title{
+    font-size: 18px;
+}
+.profile-card .card-text{
+    font-size: 14px;
+}
+
+/* orders */
+
+.nav-tabs .badge{
+    background-color: gray;
+}
+.nav-tabs .nav-link{
+    color: rgb(130, 130, 130);
+}
+.nav-tabs .active .badge{
+    background-color: rgb(219, 22, 0);
+}
+.orders-table th{
+    font-size: 14px;
+    font-weight: 100;
+    color: rgb(130, 130, 130);
+}
+.table-responsive-sm::-webkit-scrollbar{
+    display: none;
+}
+@media screen and (max-width: 769px) {
+  .filter-col {
+    position: static;
+  }
+  .sidebar {
+    margin: 0px;
+    margin-top: 10px;
+  }
+}

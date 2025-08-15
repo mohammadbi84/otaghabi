@@ -1,0 +1,48 @@
+/* header */
+.page-header h1 {
+  font-size: 20px;
+}
+/* sidebar */
+.filter-col {
+  position: sticky;
+  top: 20px;
+  width: 350px;
+  height: 100%;
+}
+/* products */
+.img-col{
+    width: 300px;
+}
+.products-row {
+  display: flex;
+}
+.products-card {
+  height: 100%;
+}
+.product-col:hover {
+  box-shadow: 0 0 8px 0 rgb(202, 202, 202);
+}
+.products-card .card-text {
+  text-align: left;
+  font-size: 16px;
+}
+.products-card .card-title {
+  font-size: 15px;
+  line-height: 1.9;
+}
+.list-group li{
+    border: none;
+    padding-top: 0px;
+    font-size: 14px;
+}
+.color {
+  /* display: inline-flex; */
+  background-color: aqua;
+  width: 20px;
+  height: 20px;
+}
+@media screen and (max-width: 576px) {
+  .filter-col {
+    width: 100%;
+  }
+}
