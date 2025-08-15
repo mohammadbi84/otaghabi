@@ -53,8 +53,10 @@ class Workshop extends Model
         return $this->morphMany(\App\Models\Visit::class, 'visitable');
     }
     public function comments()
-{
-    return $this->morphMany(Comment::class, 'commentable');
-}
-
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+    public function users(){
+        return $this->belongsToMany(User::class,'	workshop_users');
+    }
 }

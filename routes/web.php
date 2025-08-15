@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/user')->group(function () {
         Route::get('/profile', [SiteController::class, 'profile'])->name('user.profile');
         Route::get('/edit', [SiteController::class, 'edit'])->name('user.edit');
-        Route::post('/update', [SiteController::class, 'update'])->name('user.update');
+        Route::post('/update/{user}', [SiteController::class, 'update'])->name('user.update');
         Route::get('/orders', [SiteController::class, 'orders'])->name('user.orders');
         Route::get('/workshops', [SiteController::class, 'workshops'])->name('user.workshops');
         Route::get('/tests', [SiteController::class, 'tests'])->name('user.tests');

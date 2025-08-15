@@ -10,29 +10,43 @@
             <!-- moshakhasat -->
             <div class="col-md-3 filter-col">
                 <div class="sidebar text-center pb-2 shadow border">
-                    <img src="{{asset('assets/images/user.svg')}}" class="mb-2" width="70px" alt="profile">
-                    <p class="mb-1 text-muted">امیر عبدالهی</p>
-                    <p class="mb-1 text-muted">09121231234</p>
-                    <p class="mb-1 text-muted">masal@gmail.com</p>
+                    <img src="{{ asset(Auth::user()->image ?? 'assets/images/user.svg') }}" class="mb-2" width="70px"
+                        alt="profile">
+                    <p class="mb-1 text-muted">{{ Auth::user()->name }}</p>
+                    <p class="mb-1 text-muted">{{ Auth::user()->mobile }}</p>
+                    <p class="mb-1 text-muted">{{ Auth::user()->email }}</p>
                     <div class="list-group text-end mt-2 rounded-0">
-                        <a href="/user/profile.html" class="list-group-item list-group-item-action">
+                        <a href="{{ route('user.profile') }}"
+                            class="list-group-item list-group-item-action
+                            @if (Route::currentRouteName() == 'user.profile') border-end border-4 border-DarkBlue @endif ">
                             <i class="fa-solid fa-house-user"></i>
                             داشبورد
                         </a>
-                        <a href="/user/edit.html"
-                            class="list-group-item list-group-item-action border-end border-4 border-DarkBlue ">
+                        <a href="{{ route('user.edit') }}"
+                            class="list-group-item list-group-item-action
+                            @if (Route::currentRouteName() == 'user.edit') border-end border-4 border-DarkBlue @endif">
                             <i class="fa-solid fa-circle-user"></i>
                             اطلاعات حساب
                         </a>
-                        <a href="/user/orders.html" class="list-group-item list-group-item-action">
+                        <a href="{{ route('user.orders') }}"
+                            class="list-group-item list-group-item-action
+                        @if (Route::currentRouteName() == 'user.orders') border-end border-4 border-DarkBlue @endif">
                             <i class="fa-solid fa-circle-check"></i>
                             نوبت های من
                         </a>
-                        <!-- <a href="#" class="list-group-item list-group-item-action">
-                                <i class="fa-solid fa-heart"></i>
-                                مورد علاقه
-                            </a> -->
-                        <a href="#" class="list-group-item list-group-item-action">
+                        <a href="{{ route('user.workshops') }}"
+                            class="list-group-item list-group-item-action
+                        @if (Route::currentRouteName() == 'user.workshops') border-end border-4 border-DarkBlue @endif">
+                            <i class="fa-solid fa-circle-check"></i>
+                            کارگاه های آموزشی من
+                        </a>
+                        <a href="{{ route('user.tests') }}"
+                            class="list-group-item list-group-item-action
+                        @if (Route::currentRouteName() == 'user.tests') border-end border-4 border-DarkBlue @endif">
+                            <i class="fa-solid fa-circle-check"></i>
+                            تست های من
+                        </a>
+                        <a href="{{ route('logout') }}" class="list-group-item list-group-item-action">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             خروج
                         </a>
@@ -42,36 +56,47 @@
             <!-- left content -->
             <div class="col">
                 <div class="row p-2 mx-1 rounded-4 shadow bg-white border">
-                    <form action="" class="px-4 pb-2">
+                    <form action="{{ route('user.update',['user'=>Auth::user()]) }}" method="post" class="px-4 pb-2">
+                        @csrf
                         <div class="row mt-3">
                             <div class="col-md-6 mb-3">
                                 <label for="name" class="form-label">نام :</label>
-                                <input type="text" class="form-control" id="name" placeholder="نام" name="name">
+                                <input type="text" class="form-control" id="name" placeholder="نام" name="name"
+                                    value="{{ Auth::user()->name }}">
+                                @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="melicode" class="form-label">کد ملی :</label>
                                 <input type="text" class="form-control" id="melicode" placeholder="کد ملی"
-                                    name="melicode">
+                                    name="meli_code" value="{{ Auth::user()->meli_code }}">
+                                @error('meli_code')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="phone" class="form-label">شماره موبایل :</label>
-                                <input type="text" class="form-control" id="phone" placeholder="شماره موبایل"
-                                    name="phone">
+                                <label for="mobile" class="form-label">شماره موبایل :</label>
+                                <input type="text" class="form-control" id="mobile" placeholder="شماره موبایل"
+                                    name="mobile" value="{{ Auth::user()->mobile }}">
+                                @error('mobile')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="email" class="form-label">ایمیل :</label>
-                                <input type="email" class="form-control" id="email" placeholder="ایمیل"
-                                    name="email">
+                                <input type="email" class="form-control" id="email" placeholder="ایمیل" name="email"
+                                    value="{{ Auth::user()->email }}">
+                                @error('email')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="password" class="form-label">تغییر رمز عبور :</label>
                                 <input type="password" class="form-control" id="password" placeholder="رمز ورود"
                                     name="password">
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="address"> آدرس : </label>
-                            <textarea class="form-control" rows="3" id="address" name="address"></textarea>
+
                         </div>
                         <div class="d-flex justify-content-center mt-4">
                             <button type="submit" class="btn btn-blue w-25 align-middle shadow">ذخیره</button>

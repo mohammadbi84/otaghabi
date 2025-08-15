@@ -67,9 +67,25 @@ class SiteController extends Controller
     {
         return view('site.user.edit');
     }
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
-        return view('site.user.tests');
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'mobile' => 'required|numeric|digits:11',
+        ], [
+            'name.required' => 'لطفا نام خود را وارد کنید',
+            'mobile.required' => 'لطفا شماره موبایل خود را وارد کنید',
+            'mobile.digits' => 'شماره موبایل باید 11 رقمی باشد',
+        ]);
+        $user->name = $request->name;
+        $user->mobile = $request->mobile;
+        $user->email = $request->email;
+        $user->meli_code = $request->meli_code;
+        if (isset($request->password)) {
+            $user->password = $request->password;
+        }
+        $user->save();
+        return redirect()->back()->with('success', 'پروفایل با موفقیت اپدیت شد.');
     }
     public function orders()
     {

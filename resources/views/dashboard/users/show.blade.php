@@ -16,7 +16,8 @@
                 <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger float-end" onclick="return confirm('آیا از حذف این کاربر مطمئن هستید؟')">
+                    <button type="submit" class="btn btn-danger float-end"
+                        onclick="return confirm('آیا از حذف این کاربر مطمئن هستید؟')">
                         <i class="fa-regular fa-trash-can me-2"></i> حذف کاربر
                     </button>
                 </form>
@@ -47,7 +48,7 @@
                         <div class="d-flex">
                             <h5 class="ms-3">تاریخ تولد :</h5>
                             <p class="">
-                                @if($user->birth_date)
+                                @if ($user->birth_date)
                                     {{ Morilog\Jalali\Jalalian::forge($user->birth_date)->format('%d %B ، %Y') }}
                                 @else
                                     --
@@ -66,7 +67,39 @@
                 </div>
             </div>
         </div>
-
-
+        <div class="row p-2 mx-1 mt-4 rounded-4 shadow bg-white border">
+            <div class="clearfix mt-2">
+                <h5 class="float-end">نوبت های {{ $user->name }}</h5>
+            </div>
+            <div class="table-responsive-sm">
+                <table class="table mt-2 text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>تاریخ</th>
+                            <th>مشاور</th>
+                            <th>حوزه مشاوره</th>
+                            <th>وضعیت</th>
+                            <!-- <th>عملیات</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($user->consultationRequests()->latest()->get() as $request)
+                            <tr>
+                                <td>1</td>
+                                <td>{{ jdate($request->created_at)->format('Y/m/d') }}</td>
+                                <td>{{ $request->consultant->name }}</td>
+                                <td class="">{{ $request->category->title }}</td>
+                                <td class="text-warning">{{ $request->getStatusTextAttribute() }}</td>
+                                <!-- <td>
+                                                            <a href="#" class="text-success mx-1"><i class="fa-solid fa-pen-to-square"></i>
+                                                              <a href="#" class="text-primary mx-1"><i class="fa-solid fa-eye"></i>
+                                                          </td> -->
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 @endsection

@@ -17,6 +17,26 @@ class ConsultationRequest extends Model
         'status',
     ];
 
+    const STATUS_PENDING = 'pending';
+    const STATUS_APPROVED = 'approved';
+    const STATUS_REJECTED = 'rejected';
+
+    /**
+     * Get the status text attribute.
+     *
+     * @return string
+     */
+    public function getStatusTextAttribute()
+    {
+        $statuses = [
+            self::STATUS_PENDING => 'در انتظار بررسی',
+            self::STATUS_APPROVED => 'تایید شده',
+            self::STATUS_REJECTED => 'رد شده'
+        ];
+
+        return $statuses[$this->status] ?? 'وضعیت نامعلوم';
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

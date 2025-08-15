@@ -46,8 +46,7 @@
                             <i class="fa-solid fa-circle-check"></i>
                             تست های من
                         </a>
-                        <a href="{{ route('logout') }}"
-                            class="list-group-item list-group-item-action">
+                        <a href="{{ route('logout') }}" class="list-group-item list-group-item-action">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             خروج
                         </a>
@@ -71,34 +70,25 @@
                                     <th>#</th>
                                     <th>تاریخ</th>
                                     <th>مشاور</th>
-                                    <th>نوع جلسه</th>
+                                    <th>حوزه مشاوره</th>
                                     <th>وضعیت</th>
                                     <!-- <th>عملیات</th> -->
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>1403/5/3</td>
-                                    <td>محمد حسن غلامی</td>
-                                    <td class="">آنلاین</td>
-                                    <td class="text-warning">در انتظار</td>
-                                    <!-- <td>
-                                        <a href="#" class="text-success mx-1"><i class="fa-solid fa-pen-to-square"></i>
-                                          <a href="#" class="text-primary mx-1"><i class="fa-solid fa-eye"></i>
-                                      </td> -->
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>1403/5/3</td>
-                                    <td>محمد حسن غلامی</td>
-                                    <td class="">حضوری</td>
-                                    <td class="text-warning">در انتظار</td>
-                                    <!-- <td>
-                                        <a href="#" class="text-success mx-1"><i class="fa-solid fa-pen-to-square"></i>
-                                          <a href="#" class="text-primary mx-1"><i class="fa-solid fa-eye"></i>
-                                      </td> -->
-                                </tr>
+                                @foreach (Auth::user()->consultationRequests()->take(5)->latest()->get() as $request)
+                                    <tr>
+                                        <td>1</td>
+                                        <td>{{ jdate($request->created_at)->format('Y/m/d') }}</td>
+                                        <td>{{ $request->consultant->name }}</td>
+                                        <td class="">{{ $request->category->title }}</td>
+                                        <td class="text-warning">{{ $request->getStatusTextAttribute() }}</td>
+                                        <!-- <td>
+                                                <a href="#" class="text-success mx-1"><i class="fa-solid fa-pen-to-square"></i>
+                                                  <a href="#" class="text-primary mx-1"><i class="fa-solid fa-eye"></i>
+                                              </td> -->
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -108,120 +98,44 @@
                     <div class="clearfix mt-2">
                         <h5 class="float-end">آموزش های من</h5>
                         <!-- <a href="#" class="text-primary float-start">مشاهده همه<i
-                                        class="fa-solid fa-arrow-left fa-xs me-2"></i> </a> -->
+                                                class="fa-solid fa-arrow-left fa-xs me-2"></i> </a> -->
                     </div>
                     <div class="splide" id="slider4" role="group" aria-label="Splide Basic HTML Example">
                         <div class="splide__track p-3 rounded-4">
                             <!-- slider -->
                             <ul class="splide__list">
-                                <li class="splide__slide">
-                                    <a href="/workshop.html">
-                                        <div class="card text-center rounded-4 card_hover">
-                                            <img src="/images/tests/workshop.png"
-                                                class="card-img-top w-100 rounded-4 border-bottom border-3 image_border"
-                                                alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">کارگاه آموزشی فلان</h5>
-                                                <small class="text-secondary mt-2">
-                                                    دسته بندی <span class="mx-2">|</span>
-                                                    <i class="fa-regular fa-eye"></i>
-                                                    1,000 نفر
-                                                </small>
-                                                <p class="card-text mt-3">
-                                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                                    صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
-                                                    متون بلکه روزنامه
-                                                </p>
-                                                <p>
-                                                    <small class="text-danger"><del>110,000</del><span
-                                                            class="badge bg-danger mx-2">10%</span></small>
-                                                    100,000 تومان
-                                                </p>
+                                @foreach (Auth::user()->workshops_buy as $workshop)
+                                    <li class="splide__slide">
+                                        <a href="{{ route('workshop', ['workshop' => $workshop]) }}">
+                                            <div class="card text-center rounded-4 card_hover">
+                                                <img src="{{ asset($workshop->cover) }}"
+                                                    class="card-img-top w-100 rounded-4 border-bottom border-3 image_border object-fit-cover"
+                                                    alt="{{ $workshop->title }}" />
+                                                <div class="card-body">
+                                                    <h5 class="card-title">{{ $workshop->title }}</h5>
+                                                    <small class="text-secondary mt-2">
+                                                        {{ $workshop->category->title }} <span class="mx-2">|</span>
+                                                        <i class="fa-regular fa-eye"></i>
+                                                        {{ $workshop->views }} نفر
+                                                    </small>
+                                                    <p class="card-text mt-3">
+                                                        {{ $workshop->short_description }}
+                                                    </p>
+                                                    <p>
+                                                        @if ($workshop->discount > 0)
+                                                            <small
+                                                                class="text-danger"><del>{{ number_format($workshop->price) }}</del><span
+                                                                    class="badge bg-danger mx-2">{{ (($workshop->price - $workshop->final_price) * 100) / $workshop->price }}%</span></small>
+                                                            {{ number_format($workshop->final_price) }} تومان
+                                                        @else
+                                                            {{ number_format($workshop->final_price) }} تومان
+                                                        @endif
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="splide__slide">
-                                    <a href="/workshop.html">
-                                        <div class="card text-center rounded-4 card_hover">
-                                            <img src="/images/tests/workshop.png"
-                                                class="card-img-top w-100 rounded-4 border-bottom border-3 image_border"
-                                                alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">کارگاه آموزشی فلان</h5>
-                                                <small class="text-secondary mt-2">
-                                                    دسته بندی <span class="mx-2">|</span>
-                                                    <i class="fa-regular fa-eye"></i>
-                                                    1,000 نفر
-                                                </small>
-                                                <p class="card-text mt-3">
-                                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                                    صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
-                                                    متون بلکه روزنامه
-                                                </p>
-                                                <p>
-                                                    <small class="text-danger"><del>110,000</del><span
-                                                            class="badge bg-danger mx-2">10%</span></small>
-                                                    100,000 تومان
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="splide__slide">
-                                    <a href="/workshop.html">
-                                        <div class="card text-center rounded-4 card_hover">
-                                            <img src="/images/tests/workshop.png"
-                                                class="card-img-top w-100 rounded-4 border-bottom border-3 image_border"
-                                                alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">کارگاه آموزشی فلان</h5>
-                                                <small class="text-secondary mt-2">
-                                                    دسته بندی <span class="mx-2">|</span>
-                                                    <i class="fa-regular fa-eye"></i>
-                                                    1,000 نفر
-                                                </small>
-                                                <p class="card-text mt-3">
-                                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                                    صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
-                                                    متون بلکه روزنامه
-                                                </p>
-                                                <p>
-                                                    <small class="text-danger"><del>110,000</del><span
-                                                            class="badge bg-danger mx-2">10%</span></small>
-                                                    100,000 تومان
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="splide__slide">
-                                    <a href="/workshop.html">
-                                        <div class="card text-center rounded-4 card_hover">
-                                            <img src="/images/tests/workshop.png"
-                                                class="card-img-top w-100 rounded-4 border-bottom border-3 image_border"
-                                                alt="..." />
-                                            <div class="card-body">
-                                                <h5 class="card-title">کارگاه آموزشی فلان</h5>
-                                                <small class="text-secondary mt-2">
-                                                    دسته بندی <span class="mx-2">|</span>
-                                                    <i class="fa-regular fa-eye"></i>
-                                                    1,000 نفر
-                                                </small>
-                                                <p class="card-text mt-3">
-                                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                                    صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و
-                                                    متون بلکه روزنامه
-                                                </p>
-                                                <p>
-                                                    <small class="text-danger"><del>110,000</del><span
-                                                            class="badge bg-danger mx-2">10%</span></small>
-                                                    100,000 تومان
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
+                                        </a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>

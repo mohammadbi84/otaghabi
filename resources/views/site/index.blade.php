@@ -29,7 +29,7 @@
                             @foreach ($sliders as $slider)
                                 <li class="splide__slide">
                                     <a href="{{ $slider->link ?? '#' }}">
-                                        <img src="{{ asset($slider->image) }}" class="w-100" alt="{{ $slider->title }}">
+                                        <img src="{{ asset($slider->image) }}" class="w-100 object-fit-cover" alt="{{ $slider->title }}">
                                     </a>
                                 </li>
                             @endforeach
@@ -53,7 +53,7 @@
             @foreach ($top_cats as $cat)
                 <div class="col-md-3 p-3">
                     <div class="card text-center rounded-4 shadow card_hover h-100">
-                        <img src="{{ asset('storage/' . $cat->image) }}" class="card-img-top w-100 rounded-4 border-bottom"
+                        <img src="{{ asset('storage/' . $cat->image) }}" class="card-img-top w-100 rounded-4 border-bottom object-fit-cover"
                             alt="{{ $cat->title }}" />
                         <div class="card-body">
                             <h5 class="card-title">{{ $cat->title }}</h5>
@@ -80,10 +80,10 @@
                                 آبی؟</span>
                         </h4>
                     </div>
-                    <div class="row p-0 row-cols-2 row-cols-md-4 justify-content-md-center">
+                    <div class="row p-0 row-cols-2 row-cols-md-4 justify-content-md-center" style="height: 95%;">
                         <div class="col-md-6 mt-2 p-1">
                             <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
-                                <img src="{{ asset('assets/images/brain.svg') }}" class=" mx-auto" width="60"
+                                <img src="{{ asset('assets/images/brain.svg') }}" class="mx-auto object-fit-cover" width="60"
                                     alt="...">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">{{ site_setting('why_clinic_1') }}</h5>
@@ -94,7 +94,7 @@
                         </div>
                         <div class="col-md-6 mt-2 p-1">
                             <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
-                                <img src="{{ asset('assets/images/doctor.svg') }}" class=" mx-auto" width="60"
+                                <img src="{{ asset('assets/images/doctor.svg') }}" class=" mx-auto object-fit-cover" width="60"
                                     alt="...">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">{{ site_setting('why_clinic_2') }}</h5>
@@ -105,7 +105,7 @@
                         </div>
                         <div class="col-md-6 mt-2 p-1">
                             <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
-                                <img src="{{ asset('assets/images/spa.svg') }}" class=" mx-auto" width="60"
+                                <img src="{{ asset('assets/images/spa.svg') }}" class=" mx-auto object-fit-cover" width="60"
                                     alt="...">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">{{ site_setting('why_clinic_3') }}</h5>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="col-md-6 mt-2 p-1">
                             <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
-                                <img src="{{ asset('assets/images/sand_clock.svg') }}" class=" mx-auto" width="60"
+                                <img src="{{ asset('assets/images/sand_clock.svg') }}" class=" mx-auto object-fit-cover" width="60"
                                     alt="...">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">{{ site_setting('why_clinic_4') }}</h5>
@@ -175,7 +175,7 @@
                                 <a href="{{ route('workshop', ['workshop' => $workshop]) }}">
                                     <div class="card text-center rounded-4 card_hover">
                                         <img src="{{ asset($workshop->cover) }}"
-                                            class="card-img-top w-100 rounded-4 border-bottom border-3 image_border"
+                                            class="card-img-top w-100 rounded-4 border-bottom border-3 image_border object-fit-cover"
                                             alt="{{ $workshop->title }}" />
                                         <div class="card-body">
                                             <h5 class="card-title">{{ $workshop->title }}</h5>
@@ -219,7 +219,7 @@
             @foreach ($categories as $category)
                 <div class="col-md-3 p-3">
                     <div class="card text-center rounded-4 shadow card_hover h-100">
-                        <img src="{{ asset($category->image) }}" class="card-img-top w-100 rounded-4 border-bottom"
+                        <img src="{{ asset($category->image) }}" class="card-img-top w-100 rounded-4 border-bottom object-fit-cover"
                             alt="{{ $category->title }}" />
                         <div class="card-body">
                             <h5 class="card-title">{{ $category->title }}</h5>
@@ -256,7 +256,7 @@
                                 <div class="card text-end rounded-4 card_hover h-100">
                                     <a href="{{ route('blog', ['article' => $article]) }}">
                                         <img src="{{ asset($article->cover) }}"
-                                            class="card-img-top w-100 rounded-4 border-bottom border-3 image_border"
+                                            class="card-img-top w-100 rounded-4 border-bottom border-3 image_border object-fit-cover"
                                             alt="{{ $article->title }}" />
                                     </a>
                                     <div class="card-body pt-2 pb-0">
@@ -297,7 +297,7 @@
                         <div class="row g-0 pb-0">
                             <div class="col-md-5 p-3 align-content-center">
                                 <a href="{{ route('psychologist', ['psychologist' => $psychologist]) }}">
-                                    <img src="{{ asset($psychologist->image) }}" class="img-fluid rounded-4 w-100"
+                                    <img src="{{ asset($psychologist->image) }}" class="img-fluid rounded-4 w-100 object-fit-cover"
                                         alt="{{ $psychologist->name }}" />
                                 </a>
                             </div>

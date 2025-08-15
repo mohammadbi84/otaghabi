@@ -23,7 +23,7 @@
             <p class="sidebar-item shadow p-2">
                 <a href="#" class="d-flex justify-content-start align-items-center"
                     style="@if (Route::currentRouteName() == 'user.profile') color:#0b4cff; @endif">
-                    <img src="" class="float-center mx-3" alt="profile" width="50px" />
+                    <img src="{{asset('user.svg')}}" class="float-center mx-3" alt="profile" width="50px" />
                     <span class="">{{ Auth::user()->name }}</span>
                 </a>
             </p>

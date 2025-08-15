@@ -23,7 +23,7 @@
                     <li class="list-group-item ps-0 pt-0 mt-0 border-0">
                         <a href="#comments" class="px-1 address-link">
                             <i class="fa-regular fa-comment mx-1" style="color: #19a7ce"></i>
-                            11 دیدگاه</a>
+                        {{$workshop->comments_count}} دیدگاه</a>
                     </li>
                 </ul>
                 <!-- form -->
