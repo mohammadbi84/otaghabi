@@ -72,9 +72,15 @@
     <div class="container px-5">
         <!-- logo -->
         <div class="navbar-brand logo">
-            <a class="text-reset" href="/user/profile.html">
+            @if (Auth::user())
+                    <a class="text-reset" href="/user/profile.html">
                 <i class="fa-regular fa-circle-user fa-2xl"></i>
             </a>
+                @else
+                    <a class="btn login px-3 mx-2 bg-white" href="{{ route('login') }}" role="button">ورود | ثبت‌
+                        نام</a>
+                @endif
+
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
