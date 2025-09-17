@@ -98,7 +98,7 @@ Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // dashboard
-Route::prefix('/dashboard')->middleware('auth')->group(function () {
+Route::prefix('/dashboard')->middleware(['auth','role:admin'])->group(function () {
     // dashboard routes
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     // categories

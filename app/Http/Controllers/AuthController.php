@@ -23,7 +23,10 @@ class AuthController extends Controller
         if ($user) {
             if (Hash::check($request->password, $user->password)) {
                 Auth::login($user);
-                return redirect(route('dashboard'))->with('success', $user->name . ' عزیز! با موفقیت وارد شدید. ');
+                if ($user->hasRole('admin')) {
+                    return redirect(route('dashboard'))->with('success', $user->name . ' عزیز! با موفقیت وارد شدید. ');
+                }
+                return redirect('/');
             } else {
                 return redirect()->back()->with('fail', 'رمز عبود اشتباه است لطفا دوباره تلاش کنید');
             }
@@ -42,15 +45,15 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name'=>'required|string|max:255',
-            'mobile'=>'required|numeric|digits:11',
-            'password'=>'required|min_digits:6'
-        ],[
-            'name.required'=>'لطفا نام خود را وارد کنید',
-            'mobile.required'=>'لطفا شماره موبایل خود را وارد کنید',
-            'mobile.digits'=>'شماره موبایل باید 11 رقمی باشد',
-            'password.required'=>'لطفا یک رمز عبور برای خود انتخاب کنید',
-            'password.min_digits'=>'رمز عبور باید حداقل 6 رقم داشته باشد',
+            'name' => 'required|string|max:255',
+            'mobile' => 'required|numeric|digits:11',
+            'password' => 'required|min_digits:6'
+        ], [
+            'name.required' => 'لطفا نام خود را وارد کنید',
+            'mobile.required' => 'لطفا شماره موبایل خود را وارد کنید',
+            'mobile.digits' => 'شماره موبایل باید 11 رقمی باشد',
+            'password.required' => 'لطفا یک رمز عبور برای خود انتخاب کنید',
+            'password.min_digits' => 'رمز عبور باید حداقل 6 رقم داشته باشد',
         ]);
         $user = new User();
         $user->name = $request->name;
