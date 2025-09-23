@@ -52,13 +52,16 @@ class DashboardController extends Controller
             );
         }
 
+        $comment_count = Comment::where('is_approved',false)->count();
+
         $messages_count = Message::count();
         $appointment = ConsultationRequest::where('status','pending')->count();
         return view('dashboard.dashboard', [
             'months' => $months,
             'visits' => $visits,
             'users' => $users,
-            'comments' => $comments
+            'comments' => $comments,
+            'comment_count'=> $comment_count,
         ],compact('messages_count',
         'appointment'));
         // return view('dashboard.dashboard');

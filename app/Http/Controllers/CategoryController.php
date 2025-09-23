@@ -11,7 +11,7 @@ class CategoryController extends Controller
     // نمایش لیست دسته‌بندی‌ها
     public function index()
     {
-        $categories = Category::orderBy('id', 'DESC')->paginate(1);
+        $categories = Category::orderBy('id', 'DESC')->paginate(10);
         return view('dashboard.categories.index', compact('categories'));
     }
 
@@ -34,7 +34,11 @@ class CategoryController extends Controller
 
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('categories', 'public');
+            $file = $request->file('image');
+            $file_name = time() . '.' . $file->getClientOriginalExtension();
+            $destination_path = 'uploads/categories';
+            $file->move($destination_path, $file_name);
+            $imagePath = $destination_path . '/' . $file_name;
         }
 
         Category::create([

@@ -69,7 +69,7 @@
                                 <ul class="splide__list">
                                     @foreach ($about->galleries as $gallery)
                                         <li class="splide__slide">
-                                            <img src="{{ asset('storage/' . $gallery->image) }}" class="w-100 rounded-3"
+                                            <img src="{{ asset($gallery->image) }}" class="w-100 rounded-3"
                                                 alt="gallery">
                                         </li>
                                     @endforeach

@@ -11,7 +11,7 @@
         <!-- users and quick acsses -->
         <div class="row mt-4 rounded-4">
             <div class="col-md-3 mt-3">
-                <a href="#" class="text-reset">
+                <a href="{{route('consultations.index')}}" class="text-reset">
                     <div
                         class="d-flex justify-content-start align-items-center bg-white p-3 rounded-4 shadow bg-white h-100">
                         <img src="{{ asset('files/dashboard/calendar-check-solid-full.svg') }}" class="" alt="plus" width="60px"
@@ -37,27 +37,27 @@
                 </a>
             </div>
             <div class="col-md-3 mt-3">
-                <a href="#" class="text-reset">
+                <a href="{{route('comments.index')}}" class="text-reset">
                     <div
                         class="d-flex justify-content-start align-items-center bg-white p-3 rounded-4 shadow bg-white h-100">
                         <img src="{{ asset('files/dashboard/comment-dots-solid-full.svg') }}" class="" alt="plus"
                             width="60px" height="60px">
                         <div class="text-end me-2 pt-2">
                             <h5>نظر های جدید</h5>
-                            <p>{{$comments->count()}} <span class="mx-1">نظر</span></p>
+                            <p>{{$comment_count}} <span class="mx-1">نظر</span></p>
                         </div>
                     </div>
                 </a>
             </div>
             <div class="col-md-3 mt-3">
-                <a href="#" class="text-reset">
+                <a href="{{route('messages.index')}}" class="text-reset">
                     <div
                         class="d-flex justify-content-start align-items-center bg-white p-3 rounded-4 shadow bg-white h-100">
                         <img src="{{ asset('files/dashboard/message-solid-full.svg') }}" class="" alt="plus" width="60px"
                             height="60px">
                         <div class="text-end me-2 pt-2">
-                            <h5>پیام جدید</h5>
-                            <p>{{$messages_count}} <span class="mx-1">پیام</span></p>
+                            <h5>درخواست همکاری جدید</h5>
+                            <p>{{$messages_count}} <span class="mx-1">درخواست همکاری</span></p>
                         </div>
                     </div>
                 </a>

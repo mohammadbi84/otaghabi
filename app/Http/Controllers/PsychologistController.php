@@ -27,7 +27,7 @@ class PsychologistController extends Controller
         // return $request;
         $request->validate([
             'name' => 'required|string|max:255',
-            'mobile' => 'required|numeric|digits:11',
+            'mobile' => 'required|numeric|digits:11|unique:users,mobile',
             'bio' => 'required|string',
             'city_id' => 'required|exists:cities,id',
             'degree' => 'required|string',
@@ -37,6 +37,7 @@ class PsychologistController extends Controller
             'name.required' => 'وارد کردن نام الزامی است.',
             'mobile.required' => 'لطفا شماره موبایل خود را وارد کنید',
             'mobile.digits' => 'شماره موبایل باید 11 رقمی باشد',
+            'mobile.unique' => 'متخصص با این شماره موبایل وجود دارد.',
             'bio.required' => 'وارد کردن توضیحات الزامی است.',
             'city_id.required' => 'انتخاب شهر الزامی است.',
             'city_id.exists' => 'شهر انتخاب شده معتبر نیست.',
@@ -144,7 +145,7 @@ class PsychologistController extends Controller
             $psychologists = User::where('role', 'psychologist')->get();
             return view('site.psychologists.index', compact('psychologists', 'categories'));
         }
-        
+
     }
     public function psychologist(User $psychologist)
     {

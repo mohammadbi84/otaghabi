@@ -29,9 +29,16 @@
             </p>
             <p class="sidebar-item shadow p-2">
                 <a href="{{ route('dashboard') }}" class="d-flex justify-content-start align-items-center"
-                    style="@if (Route::currentRouteName() == 'index') color:#0b4cff; @endif">
+                    style="@if (Route::currentRouteName() == 'dashboard') color:#0b4cff; @endif">
                     <i class="fa-solid fa-house mx-3"></i>
                     <span class="text">خانه</span>
+                </a>
+            </p>
+            <p class="sidebar-item shadow p-2">
+                <a href="{{ route('index') }}" class="d-flex justify-content-start align-items-center"
+                    style="@if (Route::currentRouteName() == 'index') color:#0b4cff; @endif">
+                    <i class="fa-solid fa-globe mx-3"></i>
+                    <span class="text">رفتن به سایت</span>
                 </a>
             </p>
             <p class="sidebar-item shadow p-2">
@@ -177,7 +184,7 @@
                 <a href="{{ route('messages.index') }}" class="d-flex justify-content-start align-items-center"
                     style="@if (Route::currentRouteName() == 'messages.index') color:#0b4cff; @endif">
                     <i class="fa-solid fa-message mx-3"></i>
-                    <span class="text">مدیریت پیام ها</span>
+                    <span class="text">مدیریت درخواست همکاری</span>
                 </a>
             </p>
             <p class="sidebar-item shadow p-2">

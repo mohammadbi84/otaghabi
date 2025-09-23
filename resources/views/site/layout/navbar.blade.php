@@ -142,7 +142,7 @@
                 </li>
                 <li class="nav-item home-nav-item">
                     <a class="nav-link" href="{{ route('contact') }}">
-                        تماس با ما</a>
+                        همکاری با ما</a>
                 </li>
                 @if (Auth::user())
                     <li class="nav-item home-nav-item">

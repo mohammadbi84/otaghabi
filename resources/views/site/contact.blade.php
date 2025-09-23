@@ -1,6 +1,6 @@
 @extends('site.layout.master')
 @section('head')
-    <title>تماس کلینیک اتاق آبی</title>
+    <title>درخواست همکاری با کلینیک اتاق آبی</title>
     <style>
         #info {
             /* background: #fff; */

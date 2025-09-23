@@ -19,14 +19,19 @@ class AboutController extends Controller
     {
         $about = About::first();
         $about->update([
-            'content' => $request->content,
+            'content' => $request->input('content'),
             'latitude' => $request->latitude,
             'longitude' => $request->longitude,
         ]);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $img) {
-                $path = $img->store('about_gallery', 'public');
+                $file_name = time().rand(1,100000) . '.' . $img->getClientOriginalExtension();
+                $destination_path = 'uploads/about_gallery';
+                $img->move($destination_path, $file_name);
+                $path = $destination_path . '/' . $file_name;
+
+
                 $about->galleries()->create(['image' => $path]);
             }
         }
@@ -39,6 +44,11 @@ class AboutController extends Controller
         $image = AboutGallery::findOrFail($id);
         Storage::disk('public')->delete($image->image);
         $image->delete();
-        return back()->with('success', 'تصویر حذف شد');
+        if (request()->ajax()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'تصویر با موفقیت حذف شد'
+            ]);
+        }
     }
 }
