@@ -46,8 +46,8 @@ class PsychologicalTestController extends Controller
         $filename = null;
         if ($request->hasFile('cover')) {
             $file = $request->file('cover');
-            $filename = 'psychological_tests/' . time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/psychological_tests'), $filename);
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move('uploads/psychological_tests', $filename);
         }
 
         $finalPrice = $request->price - $request->discount;

@@ -81,7 +81,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/', [CartController::class, 'cart'])->name('cart');
         Route::post('/add/{type}/{id}', [CartController::class, 'add'])->name('cart.add');
         Route::delete('/item/{id}', [CartController::class, 'removeItem'])->name('cart.item.remove');
-        Route::get('/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+        Route::get('/checkout/{cart}', [CartController::class, 'checkout'])->name('cart.checkout');
+        Route::post('/checkout/{cart}', [CartController::class, 'store'])->name('cart.store');
     });
     Route::prefix('/cart')->group(function () {});
     Route::prefix('consultation')->name('consultations.')->group(function () {

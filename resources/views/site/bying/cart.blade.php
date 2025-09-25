@@ -104,7 +104,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <a href="{{ route('cart.checkout') }}" class="btn btn-blue w-100" style="height: 40px">تایید و تکمیل
+                    <a href="{{ route('cart.checkout',['cart'=>$cart]) }}" class="btn btn-blue w-100" style="height: 40px">تایید و تکمیل
                         سفارش</a>
                 </div>
             </div>
