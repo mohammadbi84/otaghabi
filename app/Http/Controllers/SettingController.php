@@ -24,6 +24,9 @@ class SettingController extends Controller
             'manager_text',
             'manager_image',
             'footer_text',
+            'cart_numder',
+            'cart_owner',
+            'bank_name',
         ];
 
         foreach ($keys as $key) {

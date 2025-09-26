@@ -42,6 +42,13 @@
                 </a>
             </p>
             <p class="sidebar-item shadow p-2">
+                <a href="{{ route('orders.index') }}" class="d-flex justify-content-start align-items-center"
+                    style="@if (Route::currentRouteName() == 'orders.index') color:#0b4cff; @endif">
+                    <i class="fa-solid fa-coins mx-3"></i>
+                    <span class="text">سفارشات</span>
+                </a>
+            </p>
+            <p class="sidebar-item shadow p-2">
                 <a href="{{ route('categories.index') }}" class="d-flex justify-content-start align-items-center"
                     style="@if (Route::currentRouteName() == 'categories.index') color:#0b4cff; @endif">
                     <i class="fa-solid fa-clipboard-list mx-3"></i>
@@ -166,13 +173,35 @@
                     </div>
                 </div>
             </div>
-            <p class="sidebar-item shadow p-2">
-                <a href="{{ route('consultations.index') }}" class="d-flex justify-content-start align-items-center"
-                    style="@if (Route::currentRouteName() == 'consultations.index') color:#0b4cff; @endif">
-                    <i class="fa-solid fa-clipboard-list mx-3"></i>
-                    <span class="text">مدیریت نوبت ها</span>
-                </a>
-            </p>
+            <div class="card accordion-card">
+                <div class="card-header rounded-4 bg-white">
+                    <a class="btn d-flex justify-content-sm-between align-items-center w-100 accordion-link"
+                        style="@if (Route::currentRouteName() == 'consultation-questions.index' or Route::currentRouteName() == 'consultations.index') color:#0b4cff; @endif" data-bs-toggle="collapse"
+                        href="#consultant">
+                        <span class="accordion-span1">
+                            <i class="fa-solid fa-square-check ms-2"></i>
+                            درخواست مشاوره
+                        </span>
+                        <span class="accordion-span2"><i class="fa-solid fa-angle-down"></i></span>
+                    </a>
+                </div>
+                <div id="consultant" class="collapse @if (Route::currentRouteName() == 'consultation-questions.index' or Route::currentRouteName() == 'consultations.index') show @endif">
+                    <div class="card-body accordion-card-body">
+                        <div class="list-group list-group-flush">
+                            <a href="{{ route('consultation-questions.index') }}"
+                                class="list-group-item list-group-item-action"
+                                style="@if (Route::currentRouteName() == 'consultation-questions.index') color:#0b4cff; @endif">
+                                لیست سوالات
+                            </a>
+                            <a href="{{ route('consultations.index') }}" class="list-group-item list-group-item-action"
+                                style="@if (Route::currentRouteName() == 'consultations.index') color:#0b4cff; @endif">
+                                لیست درخواست ها
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <p class="sidebar-item shadow p-2">
                 <a href="{{ route('comments.index') }}" class="d-flex justify-content-start align-items-center"
                     style="@if (Route::currentRouteName() == 'comments.index') color:#0b4cff; @endif">

@@ -85,12 +85,25 @@ class ConsultationRequestController extends Controller
 
         $consultation->update(['status' => $validated['status']]);
 
-        return back()->with('success', 'وضعیت نوبت با موفقیت به‌روزرسانی شد.');
+        return redirect(route('consultations.index'))->with('success', 'وضعیت نوبت با موفقیت به‌روزرسانی شد.');
     }
 
     public function destroy(ConsultationRequest $consultation)
     {
         $consultation->delete();
         return back()->with('success', 'نوبت مشاوره با موفقیت حذف شد.');
+    }
+    public function show(ConsultationRequest $consultation)
+    {
+        $statuses = [
+            'pending' => 'در انتظار تایید',
+            'approved' => 'تکمیل شده',
+            'rejected' => 'رد شده',
+        ];
+
+        // سوالات و جواب‌های مرتبط با درخواست
+        $answers = $consultation->answers()->with('question')->get();
+
+        return view('dashboard.consultations.show', compact('consultation', 'statuses', 'answers'));
     }
 }

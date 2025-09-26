@@ -47,6 +47,6 @@ class PsychologicalTest extends Model
     }
     public function users()
     {
-        return $this->belongsToMany(User::class,'user_psychological_tests');
+        return $this->belongsToMany(User::class,'user_psychological_tests')->withTimestamps();
     }
 }

@@ -57,6 +57,6 @@ class Workshop extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
     public function users(){
-        return $this->belongsToMany(User::class,'	workshop_users');
+        return $this->belongsToMany(User::class,'	workshop_users')->withTimestamps();
     }
 }

@@ -34,23 +34,16 @@
                                 <td class="align-middle">{{ $consultation->category->title ?? '--' }}</td>
                                 <td class="align-middle">{{ $consultation->consultant->name ?? '--' }}</td>
                                 <td class="align-middle">
-                                    {{ Morilog\Jalali\Jalalian::forge($consultation->created_at)->format('Y/m/d H:i') }}
+                                    {{ jdate($consultation->created_at)->format('Y/m/d H:i') }}
                                 </td>
                                 <td class="align-middle">
-                                    <form action="{{ route('consultations.update-status', $consultation->id) }}"
-                                        method="POST" class="d-inline">
-                                        @csrf
-                                        @method('PATCH')
-                                        <select name="status" class="form-select form-select-sm"
-                                            onchange="this.form.submit()">
-                                            @foreach ($statuses as $key => $status)
-                                                <option value="{{ $key }}"
-                                                    {{ $consultation->status == $key ? 'selected' : '' }}>
-                                                    {{ $status }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </form>
+                                    @foreach ($statuses as $key => $status)
+                                        @if ($consultation->status == $key)
+                                            <span>
+                                                {{ $status }}
+                                            </span>
+                                        @endif
+                                    @endforeach
                                 </td>
                                 <td class="align-middle">
                                     <form action="{{ route('consultations.destroy', $consultation->id) }}" method="POST"
@@ -62,6 +55,10 @@
                                             <i class="fa-regular fa-trash-can"></i> حذف
                                         </button>
                                     </form>
+                                    <a href="{{ route('consultations.show', $consultation->id) }}"
+                                        class="btn btn-sm btn-info">
+                                        مشاهده
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

@@ -29,6 +29,10 @@
             default => ucfirst($platform),
         };
     }
+    function site_setting_footer($key, $default = null)
+    {
+        return \App\Models\Setting::where('key', $key)->first()->value ?? $default;
+    }
 @endphp
 <!-- footer -->
 <div class="container-fluid text-white mt-5 p-0">
@@ -38,10 +42,7 @@
                 <div class="col-lg-4 col-md-6 mb-lg-0">
                     <h5 class="font-weight-bold mb-4">کلینیک روانپویشی اتاق آبی</h5>
                     <p class="text-white mb-4">
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-                        استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله
-                        در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
-                        نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                        {{site_setting_footer('footer_text')}}
                     </p>
                     <ul class="list-inline mt-4">
                         {{-- <li class="list-inline-item">
@@ -85,21 +86,21 @@
                     <h6 class="font-weight-bold mb-4">دسترسی سریع</h6>
                     <ul class="list-unstyled mb-0">
                         <li class="mb-3">
-                            <a href="/psychologists.html" class="">رواندرمانی</a>
+                            <a href="{{route('workshops')}}" class="">ورکشاپ ها</a>
                         </li>
                         <li class="mb-3">
-                            <a href="/psychologists.html" class="">روانشناسان</a>
+                            <a href="{{route('psychologists')}}" class="">روانشناسان</a>
                         </li>
                         <li class="mb-3">
-                            <a href="/blogs.html" class="">وبلاگ</a>
+                            <a href="{{route('blogs')}}" class="">وبلاگ</a>
                         </li>
                         <!-- <li class="mb-3">
                             <a href="#" class="">درباره ما</a>
                         </li> -->
                         <li class="mb-3">
-                            <a href="/user/profile.html" class="">پروفایل</a>
+                            <a href="{{route('user.profile')}}" class="">پروفایل</a>
                         </li>
-                    </ul>
+                    </ul>   
                 </div>
 
                 <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 border">

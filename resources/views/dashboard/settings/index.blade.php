@@ -49,6 +49,19 @@
                         <textarea class="form-control" id="footer_text" name="footer_text" rows="2">{{ old('footer_text', $settings['footer_text']->value ?? '') }}</textarea>
                     </div>
 
+                    {{-- متن اسلایدر --}}
+                    <div class="col-md-4 mb-3">
+                        <label for="cart_numder" class="form-label">شماره کارت تکمیل سفارش :</label>
+                        <input type="number" name="cart_numder" id="cart_numder" class="form-control" value="{{ old('cart_numder', $settings['cart_numder']->value ?? '') }}">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="bank_name" class="form-label">بانک کارت مورد نظر :</label>
+                        <input type="text" name="bank_name" id="bank_name" class="form-control" value="{{ old('bank_name', $settings['bank_name']->value ?? '') }}">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="cart_owner" class="form-label">نام صاحب کارت :</label>
+                        <input type="text" name="cart_owner" id="cart_owner" class="form-control" value="{{ old('cart_owner', $settings['cart_owner']->value ?? '') }}">
+                    </div>
                 </div>
 
                 <div class="d-flex justify-content-center mt-4">

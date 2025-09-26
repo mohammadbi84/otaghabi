@@ -82,6 +82,6 @@ class CartController extends Controller
         $cart->status = 2;
         $cart->receipt = $path;
         $cart->save();
-        return redirect(route('user.orders'))->with('success','رسید با موفقیت دریافت شد. لطفا منتظر بررسی ادمین باشید.');
+        return redirect(route('user.requests'))->with('success','رسید با موفقیت دریافت شد. لطفا منتظر بررسی ادمین باشید.');
     }
 }

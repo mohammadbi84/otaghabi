@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Comment;
 use App\Models\ConsultationRequest;
 use App\Models\Message;
@@ -56,12 +57,14 @@ class DashboardController extends Controller
 
         $messages_count = Message::count();
         $appointment = ConsultationRequest::where('status','pending')->count();
+        $orders = Cart::where('status',2)->count();
         return view('dashboard.dashboard', [
             'months' => $months,
             'visits' => $visits,
             'users' => $users,
             'comments' => $comments,
             'comment_count'=> $comment_count,
+            'orders'=> $orders,
         ],compact('messages_count',
         'appointment'));
         // return view('dashboard.dashboard');

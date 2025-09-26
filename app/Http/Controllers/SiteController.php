@@ -87,9 +87,9 @@ class SiteController extends Controller
         $user->save();
         return redirect()->back()->with('success', 'پروفایل با موفقیت اپدیت شد.');
     }
-    public function orders()
+    public function requests()
     {
-        return view('site.user.orders');
+        return view('site.user.requests');
     }
     public function workshops()
     {

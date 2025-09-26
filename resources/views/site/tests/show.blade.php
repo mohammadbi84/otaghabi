@@ -23,7 +23,7 @@
                     <li class="list-group-item ps-0 pt-0 mt-0 border-0">
                         <a href="#comments" class="px-1 address-link">
                             <i class="fa-regular fa-comment mx-1" style="color: #19a7ce"></i>
-                            {{$test->comments->count()}} دیدگاه</a>
+                            {{ $test->comments->count() }} دیدگاه</a>
                     </li>
                 </ul>
                 <!-- form -->
@@ -32,32 +32,34 @@
                     <div class="col-12 mt-3 p-2">
                         {{ $test->short_description }}
                     </div>
-                    <div class="col text-center align-content-end p-2">
-                        <!-- price -->
-                        <p class="d-block mt-2 pe-2 me-1"><strong
-                                style="font-size:24px;">{{ number_format($test->final_price) }}</strong>
-                            <small>تومان</small>
-                            <span>
-                                <span
-                                    class="badge bg-danger mx-2">{{ (($test->price - $test->final_price) * 100) / $test->price }}%
+                    @if (!Auth::user()?->psychological_tests()->find($test->id))
+                        <div class="col text-center align-content-end p-2">
+                            <!-- price -->
+                            <p class="d-block mt-2 pe-2 me-1"><strong
+                                    style="font-size:24px;">{{ number_format($test->final_price) }}</strong>
+                                <small>تومان</small>
+                                <span>
+                                    <span
+                                        class="badge bg-danger mx-2">{{ (($test->price - $test->final_price) * 100) / $test->price }}%
+                                    </span>
+                                    <del>{{ number_format($test->price) }}</del>
                                 </span>
-                                <del>{{ number_format($test->price) }}</del>
-                            </span>
-                        </p>
-                    </div>
-                    @if ($alreadyInCart)
-                        <a href="{{ route('cart') }}" class="btn btn-outline-info px-4 py-2 mt-0">
-                            رفتن به سبد خرید
-                            <i class="fa-solid fa-cart-shopping me-2"></i>
-                        </a>
-                    @else
-                        <form action="{{ route('cart.add', ['type' => 'test', 'id' => $test->id]) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-blue px-4 py-2 mt-0 w-100">
-                                افزودن به سبد خرید
+                            </p>
+                        </div>
+                        @if ($alreadyInCart)
+                            <a href="{{ route('cart') }}" class="btn btn-outline-info px-4 py-2 mt-0">
+                                رفتن به سبد خرید
                                 <i class="fa-solid fa-cart-shopping me-2"></i>
-                            </button>
-                        </form>
+                            </a>
+                        @else
+                            <form action="{{ route('cart.add', ['type' => 'test', 'id' => $test->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-blue px-4 py-2 mt-0 w-100">
+                                    افزودن به سبد خرید
+                                    <i class="fa-solid fa-cart-shopping me-2"></i>
+                                </button>
+                            </form>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -79,11 +81,20 @@
         </div>
         <!-- description start -->
         <div class="row mt-4 bg-white border rounded-4 shadow p-4">
-            <h5>توضیحات آموزش</h5>
+            <h5>توضیحات تست</h5>
             <p class="mt-2">
                 {!! $test->description !!}
             </p>
         </div>
+        @if (Auth::user()?->psychological_tests()->find($test->id))
+            <div class="row mt-4 bg-white border rounded-4 shadow p-4">
+                <h5>لینک تست</h5>
+                <p class="mt-2">
+                    <a href="{{$test->test_link}}" target="_blank" class="text-decoration-none">برای انجام تست روی این لینک کلیک کنید.</a>
+                </p>
+            </div>
+        @endif
+
         <!-- description end -->
         <!-- similar start -->
         <div class="row rounded-4 border bg-white shadow mt-5 p-3">

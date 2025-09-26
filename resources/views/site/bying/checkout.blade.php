@@ -3,6 +3,12 @@
     <link rel="stylesheet" href="{{asset('assets/css/checkout.css')}}">
     <title>پرداخت و آپلود رسید</title>
 @endsection
+@php
+    function site_setting_cart($key, $default = null)
+    {
+        return \App\Models\Setting::where('key', $key)->first()->value ?? $default;
+    }
+@endphp
 @section('content')
 <div class="container checkout_main p-0 mt-5">
         <header>
@@ -29,19 +35,19 @@
 
             <div class="card-container">
                 <div class="card-header">
-                    <div class="card-logo">بانک ملت</div>
+                    <div class="card-logo">{{site_setting_cart('bank_name')}}</div>
                     <div class="card-chip"></div>
                 </div>
-                <div class="card-number">6037 - 9911 - 2345 - 6789</div>
+                <div class="card-number" dir="ltr">{{ trim(chunk_split(site_setting_cart('cart_numder'), 4, ' - '), ' - ') }}</div>
                 <div class="card-details">
                     <div class="card-holder">
                         <div class="card-label">صاحب کارت</div>
-                        <div>فروشگاه آنلاین ما</div>
+                        <div>{{site_setting_cart('cart_owner')}}</div>
                     </div>
-                    <div class="card-expiry">
+                    {{-- <div class="card-expiry">
                         <div class="card-label">تاریخ انقضا</div>
                         <div>08/25</div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 

@@ -6,11 +6,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ConsultationQuestionController;
 use App\Http\Controllers\ConsultationRequestController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PsychologicalTestController;
 use App\Http\Controllers\PsychologistController;
 use App\Http\Controllers\SettingController;
@@ -72,9 +74,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile', [SiteController::class, 'profile'])->name('user.profile');
         Route::get('/edit', [SiteController::class, 'edit'])->name('user.edit');
         Route::post('/update/{user}', [SiteController::class, 'update'])->name('user.update');
-        Route::get('/orders', [SiteController::class, 'orders'])->name('user.orders');
+        Route::get('/requests', [SiteController::class, 'requests'])->name('user.requests');
         Route::get('/workshops', [SiteController::class, 'workshops'])->name('user.workshops');
         Route::get('/tests', [SiteController::class, 'tests'])->name('user.tests');
+        Route::prefix('/orders')->group(function () {
+            Route::get('/', [UserController::class, 'orders'])->name('user.orders');
+            Route::get('/{id}', [UserController::class, 'order'])->name('user.orders.show');
+        });
     });
     // cart
     Route::prefix('/cart')->group(function () {
@@ -99,7 +105,7 @@ Route::post('/signin', [AuthController::class, 'signin'])->name('signin');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // dashboard
-Route::prefix('/dashboard')->middleware(['auth','role:admin'])->group(function () {
+Route::prefix('/dashboard')->middleware(['auth', 'role:admin'])->group(function () {
     // dashboard routes
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     // categories
@@ -138,9 +144,20 @@ Route::prefix('/dashboard')->middleware(['auth','role:admin'])->group(function (
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     // Consultation
-    Route::get('/consultations', [ConsultationRequestController::class, 'index'])->name('consultations.index');
+    Route::resource('consultations', ConsultationRequestController::class);
     Route::patch('/consultations/{consultation}/update-status', [ConsultationRequestController::class, 'updateStatus'])->name('consultations.update-status');
-    Route::delete('/consultations/{consultation}', [ConsultationRequestController::class, 'destroy'])->name('consultations.destroy');
+    // orders
+    Route::prefix('/orders')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('/{id}', [OrderController::class, 'show'])->name('orders.show');
+        Route::post('/{id}', [OrderController::class, 'status'])->name('orders.status');
+        Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('orders.delete');
+    });
+    // سوالات درخواست مشاوره
+    Route::get('consultation-questions', [ConsultationQuestionController::class, 'index'])->name('consultation-questions.index');
+    Route::post('consultation-questions/bulk-update', [ConsultationQuestionController::class, 'bulkUpdate'])->name('consultation-questions.bulkUpdate');
+    Route::delete('consultation-questions/{id}', [ConsultationQuestionController::class, 'destroy'])
+        ->name('consultation-questions.destroy');
 });
 
 // ajaxs

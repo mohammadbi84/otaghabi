@@ -50,4 +50,8 @@ class ConsultationRequest extends Model
     {
         return $this->belongsTo(User::class, 'consultant_id');
     }
+    public function answers()
+    {
+        return $this->hasMany(ConsultationAnswer::class);
+    }
 }

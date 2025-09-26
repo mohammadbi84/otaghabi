@@ -24,14 +24,14 @@
                 </a>
             </div>
             <div class="col-md-3 mt-3">
-                <a href="#" class="text-reset">
+                <a href="{{route('orders.index')}}" class="text-reset">
                     <div
                         class="d-flex justify-content-start align-items-center bg-white p-3 rounded-4 shadow bg-white h-100">
                         <img src="{{ asset('files/dashboard/cart-shopping-solid-full.svg') }}" class="" alt="plus"
                             width="60px" height="60px">
                         <div class="text-end me-2 pt-2">
                             <h5>سفارش های جدید</h5>
-                            <p>0 <span class="mx-1">سفارش</span></p>
+                            <p>{{$orders}} <span class="mx-1">سفارش</span></p>
                         </div>
                     </div>
                 </a>

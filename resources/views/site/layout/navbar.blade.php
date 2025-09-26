@@ -73,13 +73,13 @@
         <!-- logo -->
         <div class="navbar-brand logo">
             @if (Auth::user())
-                    <a class="text-reset" href="/user/profile.html">
-                <i class="fa-regular fa-circle-user fa-2xl"></i>
-            </a>
-                @else
-                    <a class="btn login px-3 mx-2 bg-white" href="{{ route('login') }}" role="button">ورود | ثبت‌
-                        نام</a>
-                @endif
+                <a class="text-reset" href="{{ route('user.profile') }}">
+                    <i class="fa-regular fa-circle-user fa-2xl"></i>
+                </a>
+            @else
+                <a class="btn login px-3 mx-2 bg-white" href="{{ route('login') }}" role="button">ورود | ثبت‌
+                    نام</a>
+            @endif
 
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
@@ -144,12 +144,6 @@
                     <a class="nav-link" href="{{ route('contact') }}">
                         همکاری با ما</a>
                 </li>
-                @if (Auth::user())
-                    <li class="nav-item home-nav-item">
-                        <a class="nav-link" href="#">
-                            پروفایل</a>
-                    </li>
-                @endif
             </ul>
         </div>
     </div>

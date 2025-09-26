@@ -89,9 +89,9 @@ class User extends Authenticatable implements LaratrustUser
         return $this->hasMany(ConsultationRequest::class);
     }
     public function workshops_buy(){
-        return $this->belongsToMany(Workshop::class,'workshop_users');
+        return $this->belongsToMany(Workshop::class,'workshop_users')->withTimestamps();
     }
     public function psychological_tests(){
-        return $this->belongsToMany(PsychologicalTest::class,'user_psychological_tests');
+        return $this->belongsToMany(PsychologicalTest::class,'user_psychological_tests')->withTimestamps();
     }
 }

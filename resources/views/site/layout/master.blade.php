@@ -12,7 +12,8 @@
     <!-- slider -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
     <script src="{{ asset('assets/js/slider.js') }}"></script>
     <!-- title -->
     <title>اتاق آبی</title>
@@ -82,9 +83,14 @@
     @yield('script')
     <div class="floating-buttons">
         <!-- Instagram -->
-        <a href="https://instagram.com/YOUR_USERNAME" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram fs-5"></i>
-        </a>
+        @php
+            $socialLinks = App\Models\SocialLink::where('platform', 'instagram')->first();
+        @endphp
+        @if ($socialLinks)
+            <a href="{{ $socialLinks->url }}" target="_blank" aria-label="Instagram">
+                <i class="fab fa-instagram fs-5"></i>
+            </a>
+        @endif
 
         <!-- Scroll to Top -->
         <button onclick="scrollToTop()" aria-label="Scroll to Top">

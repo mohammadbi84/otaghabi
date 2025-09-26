@@ -2,299 +2,235 @@
 @extends('site.layout.master')
 
 @section('head')
-    <title>404 error</title>
+    <title>صفحه پیدا نشد - خطای 404</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
-        @import url(https://fonts.googleapis.com/css?family=Raleway:300,700);
-
-        body {
-            width: 100%;
-            height: 100%;
-            background: #48A9E6;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 300;
-            margin: 0;
-            padding: 0;
+        :root {
+            --primary: #218DCD;
+            --secondary: #146C94;
+            --accent: #0ff6f9;
+            --light: #fff;
         }
 
-        #title {
-            text-align: center;
-            font-size: 40px;
-            margin-top: 40px;
-            margin-bottom: -40px;
+        .error-card {
+            background: var(--light);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             position: relative;
-            color: #fff;
         }
 
-        .circles:after {
+        .error-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-header::before {
             content: '';
-            display: inline-block;
-            width: 100%;
-            height: 100px;
-            background: #fff;
             position: absolute;
-            top: -50px;
-            left: 0;
-            transform: skewY(-4deg);
-            -webkit-transform: skewY(-4deg);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            animation: pulse 8s infinite linear;
         }
 
-        .circles {
-            background: #fff;
+        .error-code {
+            font-size: 8rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .error-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .error-content {
+            padding: 2.5rem 2rem;
             text-align: center;
+        }
+
+        .error-icon {
+            font-size: 5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: var(--light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(33, 141, 205, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(33, 141, 205, 0.6);
+            color: var(--light);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--primary);
+            color: var(--light);
+            transform: translateY(-3px);
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 2rem;
             position: relative;
-            margin-top: -60px;
-            box-shadow: inset -1px -4px 4px rgba(0, 0, 0, 0.2);
         }
 
-        .circles p {
-            font-size: 240px;
-            color: #fff;
-            padding-top: 60px;
-            position: relative;
-            z-index: 9;
-            line-height: 100%;
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding-left: 3rem;
         }
 
-        .circles p small {
-            font-size: 40px;
-            line-height: 100%;
-            vertical-align: top;
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(33, 141, 205, 0.2);
+            outline: none;
         }
 
-        .circles .circle.small {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            background: #48A9E6;
+        .search-icon {
             position: absolute;
-            z-index: 1;
-            top: 80px;
-            left: 50%;
-            animation: 7s smallmove infinite cubic-bezier(1, .22, .71, .98);
-            -webkit-animation: 7s smallmove infinite cubic-bezier(1, .22, .71, .98);
-            animation-delay: 1.2s;
-            -webkit-animation-delay: 1.2s;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+            font-size: 1.2rem;
         }
 
-        .circles .circle.med {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: #48A9E6;
+        .decoration {
             position: absolute;
-            z-index: 1;
-            top: 0;
-            left: 10%;
-            animation: 7s medmove infinite cubic-bezier(.32, .04, .15, .75);
-            -webkit-animation: 7s medmove infinite cubic-bezier(.32, .04, .15, .75);
-            animation-delay: 0.4s;
-            -webkit-animation-delay: 0.4s;
+            opacity: 0.1;
+            z-index: 0;
         }
 
-        .circles .circle.big {
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: #48A9E6;
-            position: absolute;
-            z-index: 1;
-            top: 200px;
-            right: 0;
-            animation: 8s bigmove infinite;
-            -webkit-animation: 8s bigmove infinite;
-            animation-delay: 3s;
-            -webkit-animation-delay: 1s;
+        .decoration-1 {
+            top: 10%;
+            right: 5%;
+            font-size: 10rem;
+            color: var(--primary);
         }
 
-        @-webkit-keyframes smallmove {
+        .decoration-2 {
+            bottom: 10%;
+            left: 5%;
+            font-size: 8rem;
+            color: var(--secondary);
+        }
+
+        .error-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
             0% {
-                top: 10px;
-                left: 45%;
-                opacity: 1;
-            }
-
-            25% {
-                top: 300px;
-                left: 40%;
-                opacity: 0.7;
-            }
-
-            50% {
-                top: 240px;
-                left: 55%;
-                opacity: 0.4;
-            }
-
-            75% {
-                top: 100px;
-                left: 40%;
-                opacity: 0.6;
+                transform: rotate(0deg);
             }
 
             100% {
-                top: 10px;
-                left: 45%;
-                opacity: 1;
+                transform: rotate(360deg);
             }
         }
 
-        @keyframes smallmove {
-            0% {
-                top: 10px;
-                left: 45%;
-                opacity: 1;
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 5rem;
             }
 
-            25% {
-                top: 300px;
-                left: 40%;
-                opacity: 0.7;
+            .error-title {
+                font-size: 1.5rem;
             }
 
-            50% {
-                top: 240px;
-                left: 55%;
-                opacity: 0.4;
+            .error-content {
+                padding: 2rem 1rem;
             }
 
-            75% {
-                top: 100px;
-                left: 40%;
-                opacity: 0.6;
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
             }
 
-            100% {
-                top: 10px;
-                left: 45%;
-                opacity: 1;
-            }
-        }
-
-        @-webkit-keyframes medmove {
-            0% {
-                top: 0px;
-                left: 20%;
-                opacity: 1;
-            }
-
-            25% {
-                top: 300px;
-                left: 80%;
-                opacity: 0.7;
-            }
-
-            50% {
-                top: 240px;
-                left: 55%;
-                opacity: 0.4;
-            }
-
-            75% {
-                top: 100px;
-                left: 40%;
-                opacity: 0.6;
-            }
-
-            100% {
-                top: 0px;
-                left: 20%;
-                opacity: 1;
-            }
-        }
-
-        @keyframes medmove {
-            0% {
-                top: 0px;
-                left: 20%;
-                opacity: 1;
-            }
-
-            25% {
-                top: 300px;
-                left: 80%;
-                opacity: 0.7;
-            }
-
-            50% {
-                top: 240px;
-                left: 55%;
-                opacity: 0.4;
-            }
-
-            75% {
-                top: 100px;
-                left: 40%;
-                opacity: 0.6;
-            }
-
-            100% {
-                top: 0px;
-                left: 20%;
-                opacity: 1;
-            }
-        }
-
-        @-webkit-keyframes bigmove {
-            0% {
-                top: 0px;
-                right: 4%;
-                opacity: 0.5;
-            }
-
-            25% {
-                top: 100px;
-                right: 40%;
-                opacity: 0.4;
-            }
-
-            50% {
-                top: 240px;
-                right: 45%;
-                opacity: 0.8;
-            }
-
-            75% {
-                top: 100px;
-                right: 35%;
-                opacity: 0.6;
-            }
-
-            100% {
-                top: 0px;
-                right: 4%;
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes bigmove {
-            0% {
-                top: 0px;
-                right: 4%;
-                opacity: 0.5;
-            }
-
-            25% {
-                top: 100px;
-                right: 40%;
-                opacity: 0.4;
-            }
-
-            50% {
-                top: 240px;
-                right: 45%;
-                opacity: 0.8;
-            }
-
-            75% {
-                top: 100px;
-                right: 35%;
-                opacity: 0.6;
-            }
-
-            100% {
-                top: 0px;
-                right: 4%;
-                opacity: 0.5;
+            .btn-primary-custom,
+            .btn-outline-custom {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
             }
         }
     </style>
@@ -302,16 +238,71 @@
 
 @section('content')
     <div class="container py-5 text-center">
-        <section id="not-found">
-            {{-- <div id="title">Simple Pure CSS3 &bull; 404 Error Page</div> --}}
-            <div class="circles">
-                <p>404<br>
-                    <small>صفحه مورد نظر یافت نشد.</small>
-                </p>
-                <span class="circle big"></span>
-                <span class="circle med"></span>
-                <span class="circle small"></span>
+        <div class="error-container">
+            <div class="error-card">
+                <!-- دکوریشن‌های پس‌زمینه -->
+                <div class="decoration decoration-1">
+                    <i class="bi bi-search"></i>
+                </div>
+                <div class="decoration decoration-2">
+                    <i class="bi bi-x-circle"></i>
+                </div>
+
+                <!-- هدر صفحه خطا -->
+                <div class="error-header">
+                    <h1 class="error-code">404</h1>
+                    <h2 class="error-title">صفحه مورد نظر یافت نشد</h2>
+                    <p>متأسفیم، اما صفحه‌ای که به دنبال آن هستید وجود ندارد.</p>
+                </div>
+
+                <!-- محتوای صفحه خطا -->
+                <div class="error-content">
+                    <div class="error-icon">
+                        <i class="bi bi-emoji-frown"></i>
+                    </div>
+
+                    <p class="error-message">
+                        ممکن است آدرس را اشتباه وارد کرده باشید یا صفحه به مکان دیگری منتقل شده است.
+                        لطفاً آدرس را بررسی کنید یا از جستجو برای یافتن آنچه نیاز دارید استفاده کنید.
+                    </p>
+                    <!-- فوتر -->
+                    <div class="error-footer">
+                        <p>اگر فکر می‌کنید این یک خطاست، لطفاً با پشتیبانی تماس بگیرید.</p>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
     </div>
+    <script>
+        // افزودن انیمیشن به جعبه جستجو هنگام کلیک
+        document.querySelector('.search-input').addEventListener('focus', function() {
+            this.parentElement.style.transform = 'scale(1.02)';
+        });
+
+        document.querySelector('.search-input').addEventListener('blur', function() {
+            this.parentElement.style.transform = 'scale(1)';
+        });
+
+        // مدیریت ارسال فرم جستجو
+        document.querySelector('.search-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const searchTerm = this.value.trim();
+                if (searchTerm) {
+                    alert(`جستجو برای: "${searchTerm}"\n\nاین یک صفحه نمایشی است. در یک سایت واقعی، این عمل شما را به نتایج جستجو هدایت می‌کند.`);
+                    this.value = '';
+                }
+            }
+        });
+
+        // افزودن افکت‌های تعاملی به دکمه‌ها
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
 @endsection
