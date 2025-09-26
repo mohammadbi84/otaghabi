@@ -48,6 +48,23 @@
             font-size: 12px;
             color: #3a3a3a;
         }
+
+        /* استایل برای Choices.js */
+        .choices {
+            margin-bottom: 0;
+        }
+
+        .choices__inner {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 12px;
+            min-height: auto;
+            background: #fff;
+        }
+
+        .choices__list--dropdown .choices__item--selectable {
+            padding-right: 10px;
+        }
     </style>
 @endsection
 
@@ -82,29 +99,26 @@
                         </div>
 
                         <!-- حوزه مشاوره -->
-                        <div class="mb-3">
-                            <label for="field">حوزه مشاوره</label>
-                            <select name="category_id" id="field">
-                                <option value="" selected disabled>انتخاب کنید</option>
+                        <div class="custom-input-group">
+                            <select name="category_id" id="field" required>
+                                <option value="" selected disabled>انتخاب حوزه مشاوره</option>
                                 <option value="0">نیاز به کمک دارید؟</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->title }}
+                                    </option>
                                 @endforeach
                             </select>
                             @error('category_id')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+
                         <!-- مشاور -->
-                        <div class="mb-3">
-                            <label for="consultant_id">انتخاب مشاور</label>
-                            <select name="consultant_id" class="choices form-select">
-                                <option value="" disabled
-                                    {{ old('consultant_id', $selectedConsultant ?? '') ? '' : 'selected' }}>
-                                    انتخاب مشاور
-                                </option>
+                        <div class="custom-input-group" id="consultant-field">
+                            <select name="consultant_id" id="consultant_id">
+                                <option value="" selected disabled>انتخاب مشاور</option>
                                 @foreach ($consultants as $consultant)
-                                    <option value="">نیاز به کمک دارید؟</option>
                                     <option value="{{ $consultant->id }}"
                                         {{ old('consultant_id', $selectedConsultant ?? '') == $consultant->id ? 'selected' : '' }}>
                                         {{ $consultant->name }}
@@ -116,11 +130,24 @@
                             @enderror
                         </div>
 
+                        <!-- سوالات -->
+                        <div id="questions-box" class="mt-4" style="display:none;">
+                            <h5 class="mb-3">لطفا به سوالات زیر پاسخ دهید:</h5>
+
+                            @foreach ($questions as $question)
+                                <div class="custom-input-group">
+                                    <input type="text" name="questions[{{ $question->id }}]"
+                                        id="question-{{ $question->id }}" class="form-control"
+                                        value="{{ old('questions.' . $question->id) }}" placeholder=" ">
+                                    <label for="question-{{ $question->id }}">{{ $question->question }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+
                         <!-- دکمه ثبت -->
                         <div class="d-grid mt-4">
                             <button type="submit" class="btn btn-blue py-2">ارسال درخواست</button>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -131,53 +158,94 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <script>
-        new Choices('#field', {
-            searchEnabled: false,
-            itemSelectText: '',
-            shouldSort: false
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // مقداردهی اولیه Choices
+            let fieldChoices, consultantChoices;
 
-        new Choices('#consultant_id', {
-            searchEnabled: true,
-            itemSelectText: '',
-            shouldSort: false,
-            placeholderValue: 'انتخاب مشاور',
-        });
-    </script>
-    <script>
-        const consultantSelect = document.getElementById('consultant_id');
-        const consultantChoices = new Choices(consultantSelect, {
-            searchEnabled: true,
-            itemSelectText: '',
-            shouldSort: false,
-            placeholderValue: 'انتخاب مشاور',
-        });
+            // فقط اگر المنت وجود دارد، Choices را ایجاد کن
+            const fieldSelect = document.getElementById('field');
+            const consultantSelect = document.getElementById('consultant_id');
 
-        const fieldSelect = document.getElementById('field');
-
-        fieldSelect.addEventListener('change', function() {
-            const categoryId = this.value;
-
-            fetch(`/get-consultants-by-category/${categoryId}`)
-                .then(res => res.json())
-                .then(data => {
-                    consultantChoices.clearChoices();
-                    consultantChoices.setChoices(
-                        data.map(item => ({
-                            value: item.id,
-                            label: item.name
-                        })),
-                        'value',
-                        'label',
-                        true
-                    );
+            if (fieldSelect) {
+                fieldChoices = new Choices(fieldSelect, {
+                    searchEnabled: false,
+                    itemSelectText: '',
+                    shouldSort: false,
+                    placeholderValue: 'انتخاب حوزه مشاوره'
                 });
-        });
+            }
 
-        new Choices('#field', {
-            searchEnabled: false,
-            itemSelectText: '',
-            shouldSort: false
+            if (consultantSelect) {
+                consultantChoices = new Choices(consultantSelect, {
+                    searchEnabled: true,
+                    itemSelectText: '',
+                    shouldSort: false,
+                    placeholderValue: 'انتخاب مشاور'
+                });
+            }
+
+            // مدیریت تغییر حوزه مشاوره
+            if (fieldSelect) {
+                fieldSelect.addEventListener('change', function() {
+                    const categoryId = this.value;
+                    const questionsBox = document.getElementById('questions-box');
+                    const consultantField = document.getElementById('consultant-field');
+
+                    if (categoryId === "0") {
+                        // گزینه "نیاز به کمک دارید؟"
+                        if (questionsBox) questionsBox.style.display = "block";
+                        if (consultantField) consultantField.style.display = "none";
+
+                        // پاک کردن انتخاب مشاور
+                        if (consultantChoices) {
+                            consultantChoices.setChoiceByValue('');
+                        }
+                    } else {
+                        // سایر حوزه‌های مشاوره
+                        if (questionsBox) questionsBox.style.display = "none";
+                        if (consultantField) consultantField.style.display = "block";
+
+                        // بارگذاری مشاوران مربوط به این دسته‌بندی
+                        loadConsultantsByCategory(categoryId);
+                    }
+                });
+            }
+
+            // تابع برای بارگذاری مشاوران بر اساس دسته‌بندی
+            function loadConsultantsByCategory(categoryId) {
+                if (!consultantChoices) return;
+
+                fetch(`/get-consultants-by-category/${categoryId}`)
+                    .then(res => {
+                        if (!res.ok) throw new Error('Network response was not ok');
+                        return res.json();
+                    })
+                    .then(data => {
+                        consultantChoices.clearChoices();
+                        consultantChoices.setChoices(
+                            data.map(item => ({
+                                value: item.id,
+                                label: item.name,
+                                selected: false
+                            })),
+                            'value',
+                            'label',
+                            false
+                        );
+                    })
+                    .catch(error => {
+                        console.error('Error loading consultants:', error);
+                    });
+            }
+
+            // مقداردهی اولیه وضعیت فرم بر اساس مقدار selected
+            const initialCategory = "{{ old('category_id') }}";
+            if (initialCategory === "0") {
+                const questionsBox = document.getElementById('questions-box');
+                const consultantField = document.getElementById('consultant-field');
+                if (questionsBox) questionsBox.style.display = "block";
+                if (consultantField) consultantField.style.display = "none";
+            }
         });
     </script>
 @endsection

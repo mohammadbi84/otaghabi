@@ -28,17 +28,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (Auth::user()->consultationRequests as $request)
+                                @foreach (Auth::user()->consultationRequests as $key=>$request)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{$key+1}}</td>
                                         <td>{{ jdate($request->created_at)->format('Y/m/d') }}</td>
-                                        <td>{{ $request->consultant->name }}</td>
-                                        <td class="">{{ $request->category->title }}</td>
-                                        <td class="text-warning">{{ $request->getStatusTextAttribute() }}</td>
-                                        <!-- <td>
-                                                    <a href="#" class="text-success mx-1"><i class="fa-solid fa-pen-to-square"></i>
-                                                      <a href="#" class="text-primary mx-1"><i class="fa-solid fa-eye"></i>
-                                                  </td> -->
+                                        <td>{{ $request->consultant?->name ?? '' }}</td>
+                                        <td class="">{{ $request->category?->title ?? '' }}</td>
+                                        <td class="">{{ $request->getStatusTextAttribute() }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -28,21 +28,16 @@
                                     <th>مشاور</th>
                                     <th>حوزه مشاوره</th>
                                     <th>وضعیت</th>
-                                    <!-- <th>عملیات</th> -->
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (Auth::user()->consultationRequests()->take(5)->latest()->get() as $request)
+                                @foreach (Auth::user()->consultationRequests()->take(5)->latest()->get() as $key => $request)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{ $key + 1 }}</td>
                                         <td>{{ jdate($request->created_at)->format('Y/m/d') }}</td>
-                                        <td>{{ $request->consultant->name }}</td>
-                                        <td class="">{{ $request->category->title }}</td>
-                                        <td class="text-warning">{{ $request->getStatusTextAttribute() }}</td>
-                                        <!-- <td>
-                                                    <a href="#" class="text-success mx-1"><i class="fa-solid fa-pen-to-square"></i>
-                                                      <a href="#" class="text-primary mx-1"><i class="fa-solid fa-eye"></i>
-                                                  </td> -->
+                                        <td>{{ $request->consultant?->name ?? '' }}</td>
+                                        <td class="">{{ $request->category?->title ?? '' }}</td>
+                                        <td class="">{{ $request->getStatusTextAttribute() }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -54,7 +49,7 @@
                     <div class="clearfix mt-2">
                         <h5 class="float-end">آموزش های من</h5>
                         <!-- <a href="#" class="text-primary float-start">مشاهده همه<i
-                                                    class="fa-solid fa-arrow-left fa-xs me-2"></i> </a> -->
+                                                            class="fa-solid fa-arrow-left fa-xs me-2"></i> </a> -->
                     </div>
                     <div class="splide" id="slider4" role="group" aria-label="Splide Basic HTML Example">
                         <div class="splide__track p-3 rounded-4">
