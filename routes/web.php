@@ -143,6 +143,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'role:admin'])->group(function 
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::patch('/users/{user}/toggle-role', [UserController::class, 'toggleRole'])->name('users.toggle-role');
     // Consultation
     Route::resource('consultations', ConsultationRequestController::class);
     Route::patch('/consultations/{consultation}/update-status', [ConsultationRequestController::class, 'updateStatus'])->name('consultations.update-status');

@@ -22,6 +22,10 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        // نمی‌خوایم نقش کاربر اصلی سایت تغییر کنه (id = 1 مثلا)
+        if ($user->id == 4) {
+            return redirect()->back()->with('fail', 'این کاربر قابل حذف نیست.');
+        }
         $user->delete();
         return back()->with('success', 'کاربر با موفقیت حذف شد.');
     }
@@ -40,5 +44,26 @@ class UserController extends Controller
         // return $cart->items;
         // return $cart;
         return view('site.user.order', compact('cart'));
+    }
+    public function toggleRole(User $user)
+    {
+        // نمی‌خوایم نقش کاربر اصلی سایت تغییر کنه (id = 1 مثلا)
+        if ($user->id == 4) {
+            return redirect()->back()->with('fail', 'نقش این کاربر قابل تغییر نیست.');
+        }
+
+        if ($user->hasRole('admin')) {
+            // اگه ادمینه، نقش ادمین رو حذف کنیم و نقش user بدیم
+            $user->removeRole('admin');
+            $user->addRole('user');
+            $message = 'نقش کاربر به کاربر عادی تغییر کرد.';
+        } else {
+            // اگه کاربر عادیه، نقش user رو حذف کنیم و ادمین بدیم
+            $user->removeRole('user');
+            $user->addRole('admin');
+            $message = 'نقش کاربر به ادمین تغییر کرد.';
+        }
+
+        return redirect()->back()->with('success', $message);
     }
 }

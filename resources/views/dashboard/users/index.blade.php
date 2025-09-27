@@ -45,6 +45,24 @@
                                             class="btn btn-link text-primary p-0 mx-1">
                                             <i class="fa-solid fa-eye"></i> مشاهده
                                         </a>
+
+                                        <form action="{{ route('users.toggle-role', $user->id) }}" method="POST"
+                                            class="d-inline">
+                                            @csrf
+                                            @method('PATCH')
+                                            @if ($user->hasRole('admin'))
+                                                <button type="submit" class="btn btn-link text-warning p-0 mx-1"
+                                                    onclick="return confirm('آیا مطمئن هستید این کاربر از ادمین به کاربر عادی تغییر کند؟')">
+                                                    <i class="fa-solid fa-user"></i> تبدیل به کاربر عادی
+                                                </button>
+                                            @else
+                                                <button type="submit" class="btn btn-link text-success p-0 mx-1"
+                                                    onclick="return confirm('آیا مطمئن هستید این کاربر به ادمین تبدیل شود؟')">
+                                                    <i class="fa-solid fa-user-shield"></i> تبدیل به ادمین
+                                                </button>
+                                            @endif
+                                        </form>
+
                                         <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                             class="d-inline">
                                             @csrf
