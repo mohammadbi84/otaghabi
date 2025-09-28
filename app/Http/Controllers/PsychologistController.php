@@ -27,7 +27,7 @@ class PsychologistController extends Controller
         // return $request;
         $request->validate([
             'name' => 'required|string|max:255',
-            'mobile' => 'required|numeric|digits:11|unique:users,mobile',
+            'mobile' => 'required|numeric|digits:11',
             'bio' => 'required|string',
             'city_id' => 'required|exists:cities,id',
             'degree' => 'required|string',
