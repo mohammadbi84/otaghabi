@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\AboutGallery;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\PsychologicalTest;
@@ -35,6 +36,7 @@ class SiteController extends Controller
 
 
         $sliders = Slider::where('status', true)->get();
+        $galleries = AboutGallery::all();
         $top_cats = Category::orderByDesc('created_at')->take(4)->get();
         $top_cats_id = Category::orderByDesc('created_at')->take(4)->pluck('id');
         $categories = Category::latest()->whereNotIn('id', $top_cats_id)->get();
@@ -48,6 +50,7 @@ class SiteController extends Controller
             'workshops',
             'articles',
             'psychologists',
+            'galleries',
         ));
     }
     public function about()

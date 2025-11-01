@@ -106,17 +106,28 @@ class PsychologistController extends Controller
             $destination_path = 'uploads/users';
             $file->move($destination_path, $file_name);
             $path = $destination_path . '/' . $file_name;
+
+
+            $psychologist->update([
+                'name' => $request->name,
+                'mobile' => $request->mobile,
+                'bio' => $request->bio,
+                'city_id' => $request->city_id,
+                'degree' => $request->degree,
+                'online_consultation' => $request->is_online,
+                'image' => $path,
+            ]);
+        }else{
+            $psychologist->update([
+                'name' => $request->name,
+                'mobile' => $request->mobile,
+                'bio' => $request->bio,
+                'city_id' => $request->city_id,
+                'degree' => $request->degree,
+                'online_consultation' => $request->is_online,
+            ]);
         }
 
-        $psychologist->update([
-            'name' => $request->name,
-            'mobile' => $request->mobile,
-            'bio' => $request->bio,
-            'city_id' => $request->city_id,
-            'degree' => $request->degree,
-            'online_consultation' => $request->is_online,
-            'image' => $path ?? null,
-        ]);
 
         $psychologist->categories()->sync($request->categories);
 

@@ -11,6 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   splide.mount();
 
+  var splide = new Splide("#slider-new", {
+      type: "loop",
+    // drag: "free",
+    direction: "rtl",
+    focus: 'center',
+    perPage: 1,
+    omitEnd: true,
+    pagination: (boolean = false),
+  });
+  splide.mount();
+
   var splide = new Splide("#slider2", {
     //   type: "loop",
     // drag: "free",

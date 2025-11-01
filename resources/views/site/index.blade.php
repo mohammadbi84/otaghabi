@@ -9,20 +9,8 @@
     <!-- slider -->
     <div class="container-fluid">
         <div class="row border bg-white">
-            <div class="col-md-4">
-                <div id="info" class="bg-white p-3 d-flex flex-column align-items-center justify-content-center h-100">
-                    <h3 class="mb-3 border-bottom border-blue border-3 ">کلینیک مشاوره آتاق آبی</h3>
-                    <p class="text-center">
-                        {{ site_setting('slider_text') }}
-                    </p>
-                    <a href="{{route('consultations.create')}}" class="btn btn-blue w-75">
-                        دریافت نوبت مشاوره
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-8 p-0">
-                <div class="splide" id="slider0" role="group" aria-label="Splide Basic HTML Example">
+            <div class="col-md-4 p-3 align-items-center">
+                <div class="splide d-flex align-items-center h-100" id="slider0" role="group" aria-label="Splide Basic HTML Example">
                     <div class="splide__track rounded-4">
                         <!-- slider -->
                         <ul class="splide__list">
@@ -31,6 +19,32 @@
                                     <a href="{{ $slider->link ?? '#' }}">
                                         <img src="{{ asset($slider->image) }}" class="w-100 object-fit-cover" alt="{{ $slider->title }}">
                                     </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 p-3">
+                <div id="info" class="bg-white p-3 d-flex flex-column align-items-center justify-content-center h-100">
+                    <img src="{{ asset('assets/images/logo_full.jpg') }}" class="shadow rounded" alt="کلینیک مشاوره اتاق آبی" width="130">
+                    <h3 class="mb-3 mt-4 border-bottom border-blue border-3 ">کلینیک مشاوره آتاق آبی</h3>
+                    <p class="text-center">
+                        {{ site_setting('slider_text') }}
+                    </p>
+                    <a href="{{route('consultations.create')}}" class="btn btn-blue w-75">
+                        دریافت نوبت مشاوره
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4 p-3 align-items-center">
+                <div class="splide d-flex align-items-center h-100" id="slider-new" role="group" aria-label="Splide Basic HTML Example">
+                    <div class="splide__track rounded-4">
+                        <!-- slider -->
+                        <ul class="splide__list">
+                            @foreach ($galleries as $gallery)
+                                <li class="splide__slide">
+                                    <img src="{{ asset($gallery->image) }}" class="w-100 object-fit-cover" alt="محیط کلینیک اتاق آبی">
                                 </li>
                             @endforeach
                         </ul>
