@@ -112,6 +112,7 @@
             height: 50px;
             border-radius: 50%;
         }
+
         .play-pause i {
             position: relative;
             top: 3px;
@@ -334,10 +335,12 @@
                                     style="font-size:24px;">{{ number_format($workshop->final_price) }}</strong>
                                 <small>تومان</small>
                                 <span>
-                                    <span
-                                        class="badge bg-danger mx-2">{{ (($workshop->price - $workshop->final_price) * 100) / $workshop->price }}%
-                                    </span>
-                                    <del>{{ number_format($workshop->price) }}</del>
+                                    @if ($workshop->discount > 0)
+                                        <span
+                                            class="badge bg-danger mx-2">{{ $workshop->price > 0 ? (($workshop->price - $workshop->final_price) * 100) / $workshop->price : '' }}%
+                                        </span>
+                                        <del>{{ number_format($workshop->price) }}</del>
+                                    @endif
                                 </span>
                             </p>
                         </div>
@@ -483,7 +486,7 @@
                                                     @if ($item->discount > 0)
                                                         <small
                                                             class="text-danger"><del>{{ number_format($item->price) }}</del><span
-                                                                class="badge bg-danger mx-2">{{ (($item->price - $item->final_price) * 100) / $item->price }}%</span></small>
+                                                                class="badge bg-danger mx-2">{{ $item->price > 0 ? (($item->price - $item->final_price) * 100) / $item->price : '' }}%</span></small>
                                                         {{ number_format($item->final_price) }} تومان
                                                     @else
                                                         {{ number_format($item->final_price) }} تومان

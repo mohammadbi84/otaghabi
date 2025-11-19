@@ -39,10 +39,12 @@
                                     style="font-size:24px;">{{ number_format($test->final_price) }}</strong>
                                 <small>تومان</small>
                                 <span>
-                                    <span
-                                        class="badge bg-danger mx-2">{{ (($test->price - $test->final_price) * 100) / $test->price }}%
-                                    </span>
-                                    <del>{{ number_format($test->price) }}</del>
+                                    @if ($test->discount > 0)
+                                        <span
+                                            class="badge bg-danger mx-2">{{ $test->price > 0 ? (($test->price - $test->final_price) * 100) / $test->price : '' }}%
+                                        </span>
+                                        <del>{{ number_format($test->price) }}</del>
+                                    @endif
                                 </span>
                             </p>
                         </div>
@@ -90,7 +92,8 @@
             <div class="row mt-4 bg-white border rounded-4 shadow p-4">
                 <h5>لینک تست</h5>
                 <p class="mt-2">
-                    <a href="{{$test->test_link}}" target="_blank" class="text-decoration-none">برای انجام تست روی این لینک کلیک کنید.</a>
+                    <a href="{{ $test->test_link }}" target="_blank" class="text-decoration-none">برای انجام تست روی این
+                        لینک کلیک کنید.</a>
                 </p>
             </div>
         @endif
@@ -124,7 +127,7 @@
                                                     @if ($item->discount > 0)
                                                         <small
                                                             class="text-danger"><del>{{ number_format($item->price) }}</del><span
-                                                                class="badge bg-danger mx-2">{{ (($item->price - $item->final_price) * 100) / $item->price }}%</span></small>
+                                                                class="badge bg-danger mx-2">{{ $item->price > 0 ? (($item->price - $item->final_price) * 100) / $item->price : '' }}%</span></small>
                                                         {{ number_format($item->final_price) }} تومان
                                                     @else
                                                         {{ number_format($item->final_price) }} تومان
