@@ -18,7 +18,7 @@
 
     <link rel="shortcut icon" href="{{ asset('assets/images/logo.jpg') }}" type="image/x-icon">
     <!-- title -->
-    <title>اتاق آبی</title>
+    <title>کلینیک مشاوره و خدمات روانشناسی اتاق آبی</title>
     @yield('head')
     <!-- Floating Buttons -->
     <style>

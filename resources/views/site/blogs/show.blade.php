@@ -12,7 +12,7 @@
                 <small class="mx-2"><i class="fa-regular fa-clock"></i> تاریخ انتشار:
                     {{ jdate($article->created_at)->format('%B %d، %Y') }} - ساعت:
                     {{ jdate($article->created_at)->format('H:i') }}</small> |
-                <small class="mx-2"><i class="fa-regular fa-folder-open"></i> دسته‌بندی: <a href="/blogs.html"
+                <small class="mx-2"><i class="fa-regular fa-folder-open"></i> دسته‌بندی: <a href="{{ route('psychologists',['category'=>$article->category->id]) }}"
                         class="text-reset">{{ $article->category->title }}</a></small> |
                 <small class="mx-2"><i class="fa-regular fa-user"></i> نویسنده: {{ $article->author->name }}</small>
             </div>
@@ -27,8 +27,8 @@
 
             <!-- Article Content -->
             <div class="article-content">
-                <p style="line-height: 2;"></p>
-                {!! $article->body !!}
+                <p style="line-height: 2;" style="text-align: justify;">
+                    {!! $article->body !!}
                 </p>
             </div>
 

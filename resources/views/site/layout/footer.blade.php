@@ -40,8 +40,8 @@
         <div class="container py-5">
             <div class="row py-3">
                 <div class="col-lg-4 col-md-6 mb-lg-0">
-                    <h5 class="font-weight-bold mb-4">کلینیک روانپویشی اتاق آبی</h5>
-                    <p class="text-white mb-4">
+                    <h5 class="font-weight-bold mb-4">کلینیک مشاوره و خدمات روانشناسی اتاق آبی</h5>
+                    <p class="text-white mb-4" style="text-align: justify;">
                         {{site_setting_footer('footer_text')}}
                     </p>
                     <ul class="list-inline mt-4">
@@ -100,11 +100,11 @@
                         <li class="mb-3">
                             <a href="{{route('user.profile')}}" class="">پروفایل</a>
                         </li>
-                    </ul>   
+                    </ul>
                 </div>
 
-                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0 border">
-                    <img src="/images/no-image.png" alt="enemad" class="w-100" />
+                <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                    <img src="{{ asset('assets/images/enemad.png') }}" alt="enemad" class="w-75 rounded" />
                 </div>
             </div>
         </div>

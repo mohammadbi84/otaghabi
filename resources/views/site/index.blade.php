@@ -155,9 +155,9 @@
                                 روانپویشی اتاق آبی</span>
                         </h2>
                         <div class="border shadow-lg manager_div p-3 mt-3 text-center w-50 mx-auto">
-                            <img src="{{ asset(site_setting('manager_image')) }}" alt="manager" class="w-50 mb-3" />
+                            <img src="{{ asset(site_setting('manager_image')) }}" alt="manager" class="w-50 mb-3 rounded-4" />
                         </div>
-                        <p class="mt-3 p-3">
+                        <p class="mt-3 p-3" style="text-align: justify;">
                             {{ site_setting('manager_text') }}
                         </p>
                         <div class="text-start px-3">

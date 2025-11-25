@@ -390,7 +390,7 @@
         <!-- description start -->
         <div class="row mt-4 bg-white border rounded-4 shadow p-4">
             <h5>توضیحات آموزش</h5>
-            <p class="mt-2">
+            <p class="mt-2" style="text-align: justify;">
                 {!! $workshop->description !!}
             </p>
         </div>

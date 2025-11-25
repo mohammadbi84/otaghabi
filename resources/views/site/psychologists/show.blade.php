@@ -59,7 +59,7 @@
         <div class="row mt-4 p-3">
             <div class="col-12 p-4 px-5 rounded-4 bg-white shadow border">
                 <h4 class="m-2">بیوگرافی و معرفی رواندرمانگر، {{ $psychologist->name }}</h4>
-                <p class="mt-5">
+                <p class="mt-5" style="text-align: justify;">
                     {!! $psychologist->bio !!}
                 </p>
             </div>
