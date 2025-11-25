@@ -41,7 +41,7 @@ class ArticleController extends Controller
 
         $file = $request->file('cover');
         $filename = time() . '_' . $file->getClientOriginalName();
-        $file->move(public_path('uploads/articles'), $filename);
+        $file->move('uploads/articles', $filename);
 
         Article::create([
             'title' => $request->title,
@@ -77,9 +77,9 @@ class ArticleController extends Controller
         ]);
 
         if ($request->hasFile('cover')) {
-            $file = $request->file('cover');
+            $file = $request->file(key: 'cover');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/articles'), $filename);
+            $file->move('uploads/articles', $filename);
             $article->cover = 'uploads/articles/' . $filename;
         }
 

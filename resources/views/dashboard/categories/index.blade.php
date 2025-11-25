@@ -77,7 +77,7 @@
                                 <td class="align-middle">{{ $category->id }}</td>
                                 <td class="align-middle">
                                     @if ($category->image)
-                                        <img src="{{ asset('storage/' . $category->image) }}" width="80px" alt="">
+                                        <img src="{{ asset($category->image) }}" width="80px" alt="">
                                     @else
                                         --
                                     @endif

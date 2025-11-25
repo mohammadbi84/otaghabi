@@ -66,13 +66,13 @@ class WorkshopController extends Controller
         if ($request->hasFile('cover')) {
             $file = $request->file('cover');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/covers'), $filename);
+            $file->move('uploads/covers', $filename);
             $workshop->cover = 'uploads/covers/' . $filename;
         }
         if ($request->hasFile('video')) {
             $file = $request->file('video');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/videos'), $filename);
+            $file->move('uploads/videos', $filename);
             $workshop->video = 'uploads/videos/' . $filename;
         }
         $workshop->save();
@@ -130,13 +130,13 @@ class WorkshopController extends Controller
         if ($request->hasFile('cover')) {
             $file = $request->file('cover');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/covers'), $filename);
+            $file->move('uploads/covers', $filename);
             $workshop->cover = 'uploads/covers/' . $filename;
         }
         if ($request->hasFile('video')) {
             $file = $request->file('video');
             $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/videos'), $filename);
+            $file->move('uploads/videos', $filename);
             $workshop->video = 'uploads/videos/' . $filename;
         }
         $workshop->save();

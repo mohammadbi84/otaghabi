@@ -79,7 +79,11 @@ class CategoryController extends Controller
                 Storage::disk('public')->delete($category->image);
             }
 
-            $imagePath = $request->file('image')->store('categories', 'public');
+            $file = $request->file('image');
+            $file_name = time() . '.' . $file->getClientOriginalExtension();
+            $destination_path = 'uploads/categories';
+            $file->move($destination_path, $file_name);
+            $imagePath = $destination_path . '/' . $file_name;
             $category->image = $imagePath;
         }
 

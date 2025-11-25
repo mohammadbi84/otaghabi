@@ -9,22 +9,6 @@
     <!-- slider -->
     <div class="container-fluid">
         <div class="row border bg-white">
-            <div class="col-md-4 p-3 align-items-center">
-                <div class="splide d-flex align-items-center h-100" id="slider0" role="group" aria-label="Splide Basic HTML Example">
-                    <div class="splide__track rounded-4">
-                        <!-- slider -->
-                        <ul class="splide__list">
-                            @foreach ($sliders as $slider)
-                                <li class="splide__slide">
-                                    <a href="{{ $slider->link ?? '#' }}">
-                                        <img src="{{ asset($slider->image) }}" class="w-100 object-fit-cover" alt="{{ $slider->title }}">
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
             <div class="col-md-4 p-3">
                 <div id="info" class="bg-white p-3 d-flex flex-column align-items-center justify-content-center h-100">
                     <img src="{{ asset('assets/images/logo_full.jpg') }}" class="shadow rounded" alt="کلینیک مشاوره اتاق آبی" width="130">
@@ -51,6 +35,22 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 p-3 align-items-center">
+                <div class="splide d-flex align-items-center h-100" id="slider0" role="group" aria-label="Splide Basic HTML Example">
+                    <div class="splide__track rounded-4">
+                        <!-- slider -->
+                        <ul class="splide__list">
+                            @foreach ($sliders as $slider)
+                                <li class="splide__slide">
+                                    <a href="{{ $slider->link ?? '#' }}">
+                                        <img src="{{ asset($slider->image) }}" class="w-100 object-fit-cover" alt="{{ $slider->title }}">
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- main -->
@@ -67,7 +67,7 @@
             @foreach ($top_cats as $cat)
                 <div class="col-md-3 p-3">
                     <div class="card text-center rounded-4 shadow card_hover h-100">
-                        <img src="{{ asset('storage/' . $cat->image) }}" class="card-img-top w-100 rounded-4 border-bottom object-fit-cover"
+                        <img src="{{ asset($cat->image) }}" class="card-img-top w-100 rounded-4 border-bottom object-fit-cover"
                             alt="{{ $cat->title }}" />
                         <div class="card-body">
                             <h5 class="card-title">{{ $cat->title }}</h5>

@@ -101,7 +101,7 @@ class PsychologicalTestController extends Controller
         if ($request->hasFile('cover')) {
             $file = $request->file('cover');
             $filename = 'psychological_tests/' . time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('uploads/psychological_tests'), $filename);
+            $file->move('uploads/psychological_tests', $filename);
             $test->cover = 'uploads/psychological_tests/' . $filename;
         }
 

@@ -35,7 +35,7 @@ class UserTestController extends Controller
         if ($request->hasFile('result_file')) {
             $file = $request->file('result_file');
             $filename = 'results/' . time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('results'), $filename);
+            $file->move('results', $filename);
             $userTest->result_file = $filename;
         }
 
