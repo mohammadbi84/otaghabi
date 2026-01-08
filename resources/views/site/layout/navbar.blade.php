@@ -88,12 +88,12 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item home-nav-item">
-                    <a class="nav-link" href="/">
+                    <a class="nav-link @if (Route::currentRouteName() == 'index') menu-active @endif" href="/">
                         <i class="fa-solid fa-house fa-sm"></i>
                         صفحه اصلی</a>
                 </li>
                 <li class="nav-item home-nav-item dropdown navbar-dropdown">
-                    <a class="nav-link" role="button" data-mdb-toggle="dropdown">
+                    <a class="nav-link @if (Route::currentRouteName() == 'psychologists') menu-active @endif" role="button" data-mdb-toggle="dropdown">
                         خدمات روانشناسی
                         <i class="fa-solid fa-chevron-down fa-2xs"></i>
                     </a>
@@ -107,7 +107,7 @@
                     </ul>
                 </li>
                 <li class="nav-item home-nav-item dropdown navbar-dropdown">
-                    <a class="nav-link" role="button" data-mdb-toggle="dropdown">
+                    <a class="nav-link @if (Route::currentRouteName() == 'psychologists') menu-active @endif" role="button" data-mdb-toggle="dropdown">
                         متخصصان
                         <i class="fa-solid fa-chevron-down fa-2xs"></i>
                     </a>
@@ -122,26 +122,26 @@
                     </ul>
                 </li>
                 <li class="nav-item home-nav-item dropdown navbar-dropdown">
-                    <a class="nav-link" href="{{ route('workshops') }}" role="button">
+                    <a class="nav-link @if (Route::currentRouteName() == 'workshops') menu-active @endif" href="{{ route('workshops') }}" role="button">
                         دوره های آموزشی
                     </a>
                 </li>
                 <li class="nav-item home-nav-item dropdown navbar-dropdown">
-                    <a class="nav-link" href="{{ route('tests') }}" role="button">
+                    <a class="nav-link @if (Route::currentRouteName() == 'tests') menu-active @endif" href="{{ route('tests') }}" role="button">
                         تست های روانشناختی
                     </a>
                 </li>
                 <li class="nav-item home-nav-item">
-                    <a class="nav-link" href="{{ route('blogs') }}">
+                    <a class="nav-link @if (Route::currentRouteName() == 'blogs') menu-active @endif" href="{{ route('blogs') }}">
                         مقالات
                     </a>
                 </li>
                 <li class="nav-item home-nav-item">
-                    <a class="nav-link" href="{{ route('about') }}">
+                    <a class="nav-link @if (Route::currentRouteName() == 'about') menu-active @endif" href="{{ route('about') }}">
                         درباره ما</a>
                 </li>
                 <li class="nav-item home-nav-item">
-                    <a class="nav-link" href="{{ route('contact') }}">
+                    <a class="nav-link @if (Route::currentRouteName() == 'contact') menu-active @endif" href="{{ route('contact') }}">
                         همکاری با ما</a>
                 </li>
             </ul>

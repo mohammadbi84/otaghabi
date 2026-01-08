@@ -37,8 +37,8 @@ class SiteController extends Controller
 
         $sliders = Slider::where('status', true)->get();
         $galleries = AboutGallery::all();
-        $top_cats = Category::orderByDesc('created_at')->take(4)->get();
-        $top_cats_id = Category::orderByDesc('created_at')->take(4)->pluck('id');
+        $top_cats = Category::take(4)->get();
+        $top_cats_id = Category::take(4)->pluck('id');
         $categories = Category::latest()->whereNotIn('id', $top_cats_id)->get();
         $workshops = Workshop::orderByDesc('views')->take(8)->get();
         $articles = Article::latest()->take(8)->get();

@@ -68,9 +68,11 @@
                 class="col-md-5 bg-white d-flex flex-column align-items-center justify-content-center rounded-4 shadow h-100">
                 <img src="{{ asset('assets/images/logo_full.jpg') }}" alt="کلینیک اتاق آبی" class="img-fluid mb-3"
                     style="max-width: 100px;">
-                <p class="text-center">هرگونه سوال، پیشنهاد یا انتقادی دارید، خوشحال میشویم با ما در میان بگذارید. تیم ما
-                    همواره آماده شنیدن
-                    نظرات شماست!</p>
+                <p class="text-center">
+                    هرگونه سؤال، پیشنهاد یا انتقادی دارید، خوشحال می‌شویم با ما در میان بگذارید.
+                    همچنین اگر تمایل به همکاری با کلینیک اتاق آبی دارید، می‌توانید درخواست خود را از طریق همین فرم ثبت کنید.
+                    تیم ما همواره آماده شنیدن نظرات و پیشنهادات شماست.
+                </p>
                 {{-- <div class="m-1 ">
                     <i class="fa-brands fa-instagram fa-xl"></i>
                     <a href="#" class="text-footer text-reset">@otagheabi</a>
@@ -109,6 +111,7 @@
                 <div class="contact-form rounded-4 bg-white shadow h-100">
                     <form method="post" action="{{ route('messages.store') }}">
                         @csrf
+                        <input type="text" name="website" style="display:none">
                         <div class="mb-3">
                             <label for="name" class="form-label">نام و نام خانوادگی <span
                                     class="required-star">*</span></label>

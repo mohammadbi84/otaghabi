@@ -59,13 +59,11 @@ Route::prefix('/blogs')->group(function () {
     Route::get('/', [ArticleController::class, 'blogs'])->name('blogs');
     Route::get('/{article}', [ArticleController::class, 'blog'])->name('blog');
 });
-Route::get('/contact', [SiteController::class, 'contact'])->name('contact');
-Route::get('/about', [SiteController::class, 'about'])->name('about');
 
 // comments
 Route::post('/comments/store', [CommentController::class, 'store'])->name('comments.store');
 // message
-Route::post('/messages/store', [MessageController::class, 'store'])->name('messages.store');
+Route::post('/messages/store', [MessageController::class, 'store'])->name('messages.store')->middleware('throttle:3,10');;
 
 
 // auth needed

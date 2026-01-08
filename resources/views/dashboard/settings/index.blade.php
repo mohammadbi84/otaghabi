@@ -22,26 +22,53 @@
                     {{-- چرا کلینیک؟ --}}
                     @for ($i = 1; $i <= 4; $i++)
                         <div class="col-md-6 mb-3">
-                            <label for="why_clinic_{{ $i }}" class="form-label">چرا کلینیک؟ {{ $i }}:</label>
-                            <input type="text" class="form-control" id="why_clinic_{{ $i }}" name="why_clinic_{{ $i }}"
-                                   value="{{ old("why_clinic_$i", $settings["why_clinic_$i"]->value ?? '') }}">
+                            <label for="why_clinic_{{ $i }}" class="form-label">چرا کلینیک؟
+                                {{ $i }}:</label>
+                            <input type="text" class="form-control" id="why_clinic_{{ $i }}"
+                                name="why_clinic_{{ $i }}"
+                                value="{{ old("why_clinic_$i", $settings["why_clinic_$i"]->value ?? '') }}">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="why_clinic_text_{{ $i }}" class="form-label">متن چرا کلینیک؟
+                                {{ $i }}:</label>
+                            <input type="text" class="form-control" id="why_clinic_text_{{ $i }}"
+                                name="why_clinic_text_{{ $i }}"
+                                value="{{ old("why_clinic_text_$i", $settings["why_clinic_text_$i"]->value ?? '') }}">
+                        </div>
+                    @endfor
+                    <hr>
+                    <p>شمارنده ها:</p>
+                    @for ($i = 1; $i <= 4; $i++)
+                        <div class="col-md-6 mb-3">
+                            <label for="mission_number_{{ $i }}" class="form-label">عدد شمارنده
+                                {{ $i }}:</label>
+                            <input type="text" class="form-control" id="mission_number_{{ $i }}"
+                                name="mission_number_{{ $i }}"
+                                value="{{ old("mission_number_$i", $settings["mission_number_$i"]->value ?? '') }}">
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="mission_text_{{ $i }}" class="form-label">متن شمارنده
+                                {{ $i }}:</label>
+                            <input type="text" class="form-control" id="mission_text_{{ $i }}"
+                                name="mission_text_{{ $i }}"
+                                value="{{ old("mission_text_$i", $settings["mission_text_$i"]->value ?? '') }}">
                         </div>
                     @endfor
 
                     {{-- متن معرفی مدیر --}}
-                    <div class="col-md-12 mb-3">
+                    {{-- <div class="col-md-12 mb-3">
                         <label for="manager_text" class="form-label">متن معرفی مدیر:</label>
                         <textarea class="form-control" id="manager_text" name="manager_text" rows="3">{{ old('manager_text', $settings['manager_text']->value ?? '') }}</textarea>
-                    </div>
+                    </div> --}}
 
                     {{-- عکس مدیر --}}
-                    <div class="col-md-6 mb-3">
+                    {{-- <div class="col-md-6 mb-3">
                         <label for="manager_image" class="form-label">عکس مدیر کلینیک:</label>
                         <input type="file" class="form-control" id="manager_image" name="manager_image">
                         @if (!empty($settings['manager_image']->value))
                             <img src="{{ asset($settings['manager_image']->value) }}" width="150" class="mt-2 rounded">
                         @endif
-                    </div>
+                    </div> --}}
 
                     {{-- متن فوتر --}}
                     <div class="col-md-12 mb-3">
@@ -52,15 +79,18 @@
                     {{-- متن اسلایدر --}}
                     <div class="col-md-4 mb-3">
                         <label for="cart_numder" class="form-label">شماره کارت تکمیل سفارش :</label>
-                        <input type="number" name="cart_numder" id="cart_numder" class="form-control" value="{{ old('cart_numder', $settings['cart_numder']->value ?? '') }}">
+                        <input type="number" name="cart_numder" id="cart_numder" class="form-control"
+                            value="{{ old('cart_numder', $settings['cart_numder']->value ?? '') }}">
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="bank_name" class="form-label">بانک کارت مورد نظر :</label>
-                        <input type="text" name="bank_name" id="bank_name" class="form-control" value="{{ old('bank_name', $settings['bank_name']->value ?? '') }}">
+                        <input type="text" name="bank_name" id="bank_name" class="form-control"
+                            value="{{ old('bank_name', $settings['bank_name']->value ?? '') }}">
                     </div>
                     <div class="col-md-4 mb-3">
                         <label for="cart_owner" class="form-label">نام صاحب کارت :</label>
-                        <input type="text" name="cart_owner" id="cart_owner" class="form-control" value="{{ old('cart_owner', $settings['cart_owner']->value ?? '') }}">
+                        <input type="text" name="cart_owner" id="cart_owner" class="form-control"
+                            value="{{ old('cart_owner', $settings['cart_owner']->value ?? '') }}">
                     </div>
                 </div>
 

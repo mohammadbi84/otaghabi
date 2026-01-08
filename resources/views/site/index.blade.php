@@ -11,24 +11,27 @@
         <div class="row border bg-white">
             <div class="col-md-4 p-3">
                 <div id="info" class="bg-white p-3 d-flex flex-column align-items-center justify-content-center h-100">
-                    <img src="{{ asset('assets/images/logo_full.jpg') }}" class="shadow rounded" alt="کلینیک مشاوره اتاق آبی" width="130">
+                    <img src="{{ asset('assets/images/logo_full.jpg') }}" class="shadow rounded main-logo"
+                        alt="کلینیک مشاوره اتاق آبی" width="130">
                     <h3 class="mb-3 mt-4 border-bottom border-blue border-3 ">کلینیک مشاوره آتاق آبی</h3>
                     <p class="text-center">
                         {{ site_setting('slider_text') }}
                     </p>
-                    <a href="{{route('consultations.create')}}" class="btn btn-blue w-75">
+                    <a href="{{ route('consultations.create') }}" class="btn btn-blue w-75">
                         دریافت نوبت مشاوره
                     </a>
                 </div>
             </div>
             <div class="col-md-4 p-3 align-items-center">
-                <div class="splide d-flex align-items-center h-100" id="slider-new" role="group" aria-label="Splide Basic HTML Example">
+                <div class="splide d-flex align-items-center h-100" id="slider-new" role="group"
+                    aria-label="Splide Basic HTML Example">
                     <div class="splide__track rounded-4">
                         <!-- slider -->
                         <ul class="splide__list">
                             @foreach ($galleries as $gallery)
                                 <li class="splide__slide">
-                                    <img src="{{ asset($gallery->image) }}" class="w-100 object-fit-cover" alt="محیط کلینیک اتاق آبی">
+                                    <img src="{{ asset($gallery->image) }}" class="w-100 object-fit-cover"
+                                        alt="محیط کلینیک اتاق آبی">
                                 </li>
                             @endforeach
                         </ul>
@@ -36,14 +39,16 @@
                 </div>
             </div>
             <div class="col-md-4 p-3 align-items-center">
-                <div class="splide d-flex align-items-center h-100" id="slider0" role="group" aria-label="Splide Basic HTML Example">
+                <div class="splide d-flex align-items-center h-100" id="slider0" role="group"
+                    aria-label="Splide Basic HTML Example">
                     <div class="splide__track rounded-4">
                         <!-- slider -->
                         <ul class="splide__list">
                             @foreach ($sliders as $slider)
                                 <li class="splide__slide">
                                     <a href="{{ $slider->link ?? '#' }}">
-                                        <img src="{{ asset($slider->image) }}" class="w-100 object-fit-cover" alt="{{ $slider->title }}">
+                                        <img src="{{ asset($slider->image) }}" class="w-100 object-fit-cover"
+                                            alt="{{ $slider->title }}">
                                     </a>
                                 </li>
                             @endforeach
@@ -67,8 +72,8 @@
             @foreach ($top_cats as $cat)
                 <div class="col-md-3 p-3">
                     <div class="card text-center rounded-4 shadow card_hover h-100">
-                        <img src="{{ asset($cat->image) }}" class="card-img-top w-100 rounded-4 border-bottom object-fit-cover"
-                            alt="{{ $cat->title }}" />
+                        <img src="{{ asset($cat->image) }}"
+                            class="card-img-top w-100 rounded-4 border-bottom object-fit-cover" alt="{{ $cat->title }}" />
                         <div class="card-body">
                             <h5 class="card-title">{{ $cat->title }}</h5>
                             <p class="card-text">
@@ -89,53 +94,34 @@
                 <div class="shadow p-3 rounded-4 border bg-white h-100">
                     <div class="d-blok">
                         <h4 class="text-center">
-                            <span class="px-3 border-bottom border-3" style="border-color: #afd3e2 !important">چرا
-                                کلینیک اتاق
-                                آبی؟</span>
+                            <span class="px-3 border-bottom border-3" style="border-color: #afd3e2 !important">
+                                اتاق آبی به روایت آمار
+                            </span>
                         </h4>
                     </div>
-                    <div class="row p-0 row-cols-2 row-cols-md-4 justify-content-md-center" style="height: 95%;">
-                        <div class="col-md-6 mt-2 p-1">
-                            <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
-                                <img src="{{ asset('assets/images/brain.svg') }}" class="mx-auto object-fit-cover" width="60"
-                                    alt="...">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">{{ site_setting('why_clinic_1') }}</h5>
-                                    {{-- <p class="card-text">ما با استفاده از جدیدترین روش‌های روان‌درمانی به شما کمک
-                                        می‌کنیم.</p> --}}
-                                </div>
+                    <div class="row row-cols-2 mission-row p-0 pt-4 mt-3 bg-white rounded-4">
+                        <div class="col mb-4">
+                            <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
+                                <span class="mission-number" data-target="{{ site_setting('mission_number_1') }}">0</span>
+                                <span>{{ site_setting('mission_text_1') }}</span>
                             </div>
                         </div>
-                        <div class="col-md-6 mt-2 p-1">
-                            <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
-                                <img src="{{ asset('assets/images/doctor.svg') }}" class=" mx-auto object-fit-cover" width="60"
-                                    alt="...">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">{{ site_setting('why_clinic_2') }}</h5>
-                                    {{-- <p class="card-text">مشاوران ما از بهترین‌های ایران با سال‌ها تجربه تخصصی هستند.
-                                    </p> --}}
-                                </div>
+                        <div class="col mb-4">
+                            <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
+                                <span class="mission-number" data-target="{{ site_setting('mission_number_2') }}">0</span>
+                                <span>{{ site_setting('mission_text_2') }}</span>
                             </div>
                         </div>
-                        <div class="col-md-6 mt-2 p-1">
-                            <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
-                                <img src="{{ asset('assets/images/spa.svg') }}" class=" mx-auto object-fit-cover" width="60"
-                                    alt="...">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">{{ site_setting('why_clinic_3') }}</h5>
-                                    {{-- <p class="card-text">با طراحی فضایی آرام و الهام‌بخش، درمانی موثر و لذت‌بخش را
-                                        تجربه کنید.</p> --}}
-                                </div>
+                        <div class="col mb-4">
+                            <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
+                                <span class="mission-number" data-target="{{ site_setting('mission_number_3') }}">0</span>
+                                <span>{{ site_setting('mission_text_3') }}</span>
                             </div>
                         </div>
-                        <div class="col-md-6 mt-2 p-1">
-                            <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
-                                <img src="{{ asset('assets/images/sand_clock.svg') }}" class=" mx-auto object-fit-cover" width="60"
-                                    alt="...">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">{{ site_setting('why_clinic_4') }}</h5>
-                                    {{-- <p class="card-text">20 سال سابقه کار در حوزه رواندرمانی</p> --}}
-                                </div>
+                        <div class="col mb-4">
+                            <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
+                                <span class="mission-number" data-target="{{ site_setting('mission_number_4') }}">0</span>
+                                <span>{{ site_setting('mission_text_4') }}</span>
                             </div>
                         </div>
                     </div>
@@ -143,10 +129,7 @@
             </div>
             <!-- manager -->
             <div class="col-md-8 mt-2">
-                <div class="row p-2 shadow rounded-4 border bg-white">
-                    <!-- <div class="col-md-4 p-2">
-
-                                                                                      </div> -->
+                {{-- <div class="row p-2 shadow rounded-4 border bg-white">
                     <div class="col-md-12 p-4">
                         <h2 class="text-center mt-2 manager_header">
                             <span class="px-3 border-bottom border-3" style="border-color: #afd3e2 !important">دکتر
@@ -162,6 +145,57 @@
                         </p>
                         <div class="text-start px-3">
                             <a href="#" class="btn btn-blue p-2 manager_btn">مشاهده پروفایل دکتر رضایی نسب</a>
+                        </div>
+                    </div>
+                </div> --}}
+                <div class="shadow p-3 rounded-4 border bg-white h-100">
+                    <div class="d-blok">
+                        <h4 class="text-center">
+                            <span class="px-3 border-bottom border-3" style="border-color: #afd3e2 !important">چرا
+                                کلینیک اتاق
+                                آبی؟</span>
+                        </h4>
+                    </div>
+                    <div class="row p-0 row-cols-2 row-cols-md-4 justify-content-md-center" style="height: 95%;">
+                        <div class="col-md-6 mt-2 p-1">
+                            <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
+                                <img src="{{ asset('assets/images/brain.svg') }}" class="mx-auto object-fit-cover"
+                                    width="60" alt="...">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">{{ site_setting('why_clinic_1') }}</h5>
+                                    <p class="card-text">{{ site_setting('why_clinic_text_1') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-2 p-1">
+                            <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
+                                <img src="{{ asset('assets/images/doctor.svg') }}" class=" mx-auto object-fit-cover"
+                                    width="60" alt="...">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">{{ site_setting('why_clinic_2') }}</h5>
+                                    <p class="card-text">{{ site_setting('why_clinic_text_2') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-2 p-1">
+                            <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
+                                <img src="{{ asset('assets/images/spa.svg') }}" class=" mx-auto object-fit-cover"
+                                    width="60" alt="...">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">{{ site_setting('why_clinic_3') }}</h5>
+                                    <p class="card-text">{{ site_setting('why_clinic_text_3') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-2 p-1">
+                            <div class="card p-2 pt-3 border rounded-4 h-100 card_hover">
+                                <img src="{{ asset('assets/images/sand_clock.svg') }}" class=" mx-auto object-fit-cover"
+                                    width="60" alt="...">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">{{ site_setting('why_clinic_4') }}</h5>
+                                    <p class="card-text">{{ site_setting('why_clinic_text_4') }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -233,7 +267,8 @@
             @foreach ($categories as $category)
                 <div class="col-md-3 p-3">
                     <div class="card text-center rounded-4 shadow card_hover h-100">
-                        <img src="{{ asset($category->image) }}" class="card-img-top w-100 rounded-4 border-bottom object-fit-cover"
+                        <img src="{{ asset($category->image) }}"
+                            class="card-img-top w-100 rounded-4 border-bottom object-fit-cover"
                             alt="{{ $category->title }}" />
                         <div class="card-body">
                             <h5 class="card-title">{{ $category->title }}</h5>
@@ -311,7 +346,8 @@
                         <div class="row g-0 pb-0">
                             <div class="col-md-5 p-3 align-content-center">
                                 <a href="{{ route('psychologist', ['psychologist' => $psychologist]) }}">
-                                    <img src="{{ asset($psychologist->image) }}" class="img-fluid rounded-4 w-100 object-fit-cover"
+                                    <img src="{{ asset($psychologist->image) }}"
+                                        class="img-fluid rounded-4 w-100 object-fit-cover"
                                         alt="{{ $psychologist->name }}" />
                                 </a>
                             </div>
@@ -364,4 +400,42 @@
         </div>
         <!-- profiles end -->
     </div>
+@endsection
+@section('script')
+    <script>
+        // counter
+        const counters = document.querySelectorAll(".mission-number");
+
+        function animateCounter(counter) {
+            let target = +counter.getAttribute("data-target");
+            let current = 0;
+            let increment = Math.ceil(target / 100);
+            // let increment = 1;
+
+            let interval = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = target;
+                    clearInterval(interval);
+                } else {
+                    counter.textContent = current;
+                }
+            }, 40);
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !entry.target.started) {
+                        animateCounter(entry.target);
+                        entry.target.started = true; // مخصوص همان شمارنده
+                    }
+                });
+            }, {
+                threshold: 0.9,
+            }
+        );
+
+        counters.forEach((counter) => observer.observe(counter));
+    </script>
 @endsection

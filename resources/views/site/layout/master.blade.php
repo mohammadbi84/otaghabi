@@ -31,6 +31,15 @@
             flex-direction: column;
             gap: 10px;
         }
+        .floating-buttons2 {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
         .floating-buttons button {
             background-color: #19A7CE;
@@ -50,6 +59,20 @@
         .floating-buttons a {
             background: #833AB4;
             background: linear-gradient(141deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 39%, rgba(252, 176, 69, 1) 100%);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .floating-buttons2 a {
+            background: #21C063;
             color: white;
             width: 45px;
             height: 45px;
@@ -98,6 +121,17 @@
         <button onclick="scrollToTop()" aria-label="Scroll to Top">
             <i class="fas fa-arrow-up fs-5"></i>
         </button>
+    </div>
+    <div class="floating-buttons2">
+        <!-- Instagram -->
+        @php
+            $whatsapp = App\Models\SocialLink::where('platform', 'whatsapp')->first();
+        @endphp
+        @if ($whatsapp)
+        <a href="https://wa.me/{{ $whatsapp->url }}" target="_blank" aria-label="whatsapp">
+            <i class="fab fa-whatsapp fs-5"></i>
+        </a>
+        @endif
     </div>
     <script>
         function scrollToTop() {
