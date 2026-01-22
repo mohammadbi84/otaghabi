@@ -92,7 +92,8 @@
 
 
 @section('javaScript')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> --}}
+    <script src="https://lib.arvancloud.ir/Chart.js/4.2.1/chart.min.js"></script>
 
     <script>
         new Chart("myChart", {

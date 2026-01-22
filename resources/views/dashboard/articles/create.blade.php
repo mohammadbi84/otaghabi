@@ -53,7 +53,8 @@
 @endsection
 
 @section('javaScript')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script> --}}
+    <script src="https://lib.arvancloud.ir/summernote/0.8.9/summernote-lite.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#body').summernote({

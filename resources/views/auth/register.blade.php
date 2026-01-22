@@ -5,13 +5,16 @@
     <title>ثبت نام</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/fbc05d3d5f.js" crossorigin="anonymous"></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> --}}
+    <link href="https://lib.arvancloud.ir/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet" />
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> --}}
+    <script src="https://lib.arvancloud.ir/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
+    {{-- <script src="https://kit.fontawesome.com/fbc05d3d5f.js" crossorigin="anonymous"></script> --}}
+    <script src="https://lib.arvancloud.ir/font-awesome/6.3.0/js/all.js" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://lib.arvancloud.ir/jquery/3.6.3/jquery.js"></script>
     {{-- sweet alert --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://lib.arvancloud.ir/sweetalert2/9.17.4/sweetalert2.all.js"></script>
     <style>
         a {
             text-decoration: none;

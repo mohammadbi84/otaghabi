@@ -2,7 +2,8 @@
 @section('head')
     <title>درباره کلینیک اتاق آبی</title>
     <!-- Leaflet Map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    {{-- <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /> --}}
+    <link rel="stylesheet" href="https://lib.arvancloud.ir/leaflet/1.9.3/leaflet.css" />
     <style>
         #map {
             height: 300px;
@@ -117,12 +118,14 @@
 
 @section('script')
     <!-- Leaflet نقشه -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://lib.arvancloud.ir/leaflet/1.9.3/leaflet.js"></script>
+    <script src="https://lib.arvancloud.ir/leaflet/1.9.3/leaflet.js.map"></script>
+    {{-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> --}}
     <script>
         var lat = {{ $about->latitude ?? 35.6892 }};
         var lng = {{ $about->longitude ?? 51.389 }};
         var map = L.map('map').setView([lat, lng], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        L.tileLayer('https://lib.arvancloud.ir/leaflet/1.9.3/images/layers.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
         L.marker([lat, lng]).addTo(map)

@@ -4,16 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/fbc05d3d5f.js" crossorigin="anonymous"></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> --}}
+    <link href="https://lib.arvancloud.ir/bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet" />
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> --}}
+    <script src="https://lib.arvancloud.ir/bootstrap/5.3.0-alpha1/js/bootstrap.min.js"></script>
+    {{-- <script src="https://kit.fontawesome.com/fbc05d3d5f.js" crossorigin="anonymous"></script> --}}
+    <script src="https://lib.arvancloud.ir/font-awesome/6.3.0/js/all.js" crossorigin="anonymous"></script>
     <!-- styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/Home-style.css') }}" />
     <!-- slider -->
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script> --}}
+    <script src="https://lib.arvancloud.ir/splidejs/4.1.4/js/splide.min.js"></script>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" /> --}}
+    <link href="https://lib.arvancloud.ir/splidejs/4.1.4/css/splide.min.css" rel="stylesheet" />
+    <script src="https://lib.arvancloud.ir/jquery/3.6.3/jquery.js"></script>
+
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script> --}}
     <script src="{{ asset('assets/js/slider.js') }}"></script>
 
     <link rel="shortcut icon" href="{{ asset('assets/images/logo.jpg') }}" type="image/x-icon">
@@ -141,7 +148,8 @@
             });
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+    <script src="https://lib.arvancloud.ir/sweetalert2/9.17.4/sweetalert2.all.js"></script>
 
     @if (Session::has('success'))
         <script>
