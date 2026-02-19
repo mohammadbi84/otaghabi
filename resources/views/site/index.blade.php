@@ -1,6 +1,6 @@
 @extends('site.layout.master')
 @php
-    function site_setting($key, $default = null)
+    function site_setting_home($key, $default = null)
     {
         return \App\Models\Setting::where('key', $key)->first()->value ?? $default;
     }
@@ -15,7 +15,7 @@
                         alt="کلینیک مشاوره اتاق آبی" width="130">
                     <h3 class="mb-3 mt-4 border-bottom border-blue border-3 ">کلینیک مشاوره آتاق آبی</h3>
                     <p class="text-center">
-                        {{ site_setting('slider_text') }}
+                        {{ site_setting_home('slider_text') }}
                     </p>
                     <a href="{{ route('consultations.create') }}" class="btn btn-blue w-75">
                         دریافت نوبت مشاوره
@@ -48,7 +48,7 @@
                                 <li class="splide__slide">
                                     <a href="{{ $slider->link ?? '#' }}">
                                         <img src="{{ asset($slider->image) }}" class="w-100 object-fit-cover"
-                                            alt="{{ $slider->title }}">
+                                            alt="{{ $slider->title ?? '--' }}">
                                     </a>
                                 </li>
                             @endforeach
@@ -73,9 +73,9 @@
                 <div class="col-md-3 p-3">
                     <div class="card text-center rounded-4 shadow card_hover h-100">
                         <img src="{{ asset($cat->image) }}"
-                            class="card-img-top w-100 rounded-4 border-bottom object-fit-cover" alt="{{ $cat->title }}" />
+                            class="card-img-top w-100 rounded-4 border-bottom object-fit-cover" alt="{{ $cat->title ?? '--' }}" />
                         <div class="card-body">
-                            <h5 class="card-title">{{ $cat->title }}</h5>
+                            <h5 class="card-title">{{ $cat->title ?? '--' }}</h5>
                             <p class="card-text">
                                 {{ $cat->short_description }}
                             </p>
@@ -102,26 +102,26 @@
                     <div class="row row-cols-2 mission-row p-0 pt-4 mt-3 bg-white rounded-4">
                         <div class="col mb-4">
                             <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
-                                <span class="mission-number" data-target="{{ site_setting('mission_number_1') }}">0</span>
-                                <span>{{ site_setting('mission_text_1') }}</span>
+                                <span class="mission-number" data-target="{{ site_setting_home('mission_number_1') }}">0</span>
+                                <span>{{ site_setting_home('mission_text_1') }}</span>
                             </div>
                         </div>
                         <div class="col mb-4">
                             <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
-                                <span class="mission-number" data-target="{{ site_setting('mission_number_2') }}">0</span>
-                                <span>{{ site_setting('mission_text_2') }}</span>
+                                <span class="mission-number" data-target="{{ site_setting_home('mission_number_2') }}">0</span>
+                                <span>{{ site_setting_home('mission_text_2') }}</span>
                             </div>
                         </div>
                         <div class="col mb-4">
                             <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
-                                <span class="mission-number" data-target="{{ site_setting('mission_number_3') }}">0</span>
-                                <span>{{ site_setting('mission_text_3') }}</span>
+                                <span class="mission-number" data-target="{{ site_setting_home('mission_number_3') }}">0</span>
+                                <span>{{ site_setting_home('mission_text_3') }}</span>
                             </div>
                         </div>
                         <div class="col mb-4">
                             <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
-                                <span class="mission-number" data-target="{{ site_setting('mission_number_4') }}">0</span>
-                                <span>{{ site_setting('mission_text_4') }}</span>
+                                <span class="mission-number" data-target="{{ site_setting_home('mission_number_4') }}">0</span>
+                                <span>{{ site_setting_home('mission_text_4') }}</span>
                             </div>
                         </div>
                     </div>
@@ -138,10 +138,10 @@
                                 روانپویشی اتاق آبی</span>
                         </h2>
                         <div class="border shadow-lg manager_div p-3 mt-3 text-center w-50 mx-auto">
-                            <img src="{{ asset(site_setting('manager_image')) }}" alt="manager" class="w-50 mb-3 rounded-4" />
+                            <img src="{{ asset(site_setting_home('manager_image')) }}" alt="manager" class="w-50 mb-3 rounded-4" />
                         </div>
                         <p class="mt-3 p-3" style="text-align: justify;">
-                            {{ site_setting('manager_text') }}
+                            {{ site_setting_home('manager_text') }}
                         </p>
                         <div class="text-start px-3">
                             <a href="#" class="btn btn-blue p-2 manager_btn">مشاهده پروفایل دکتر رضایی نسب</a>
@@ -162,8 +162,8 @@
                                 <img src="{{ asset('assets/images/brain.svg') }}" class="mx-auto object-fit-cover"
                                     width="60" alt="...">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">{{ site_setting('why_clinic_1') }}</h5>
-                                    <p class="card-text">{{ site_setting('why_clinic_text_1') }}</p>
+                                    <h5 class="card-title">{{ site_setting_home('why_clinic_1') }}</h5>
+                                    <p class="card-text">{{ site_setting_home('why_clinic_text_1') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -172,8 +172,8 @@
                                 <img src="{{ asset('assets/images/doctor.svg') }}" class=" mx-auto object-fit-cover"
                                     width="60" alt="...">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">{{ site_setting('why_clinic_2') }}</h5>
-                                    <p class="card-text">{{ site_setting('why_clinic_text_2') }}</p>
+                                    <h5 class="card-title">{{ site_setting_home('why_clinic_2') }}</h5>
+                                    <p class="card-text">{{ site_setting_home('why_clinic_text_2') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -182,8 +182,8 @@
                                 <img src="{{ asset('assets/images/spa.svg') }}" class=" mx-auto object-fit-cover"
                                     width="60" alt="...">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">{{ site_setting('why_clinic_3') }}</h5>
-                                    <p class="card-text">{{ site_setting('why_clinic_text_3') }}</p>
+                                    <h5 class="card-title">{{ site_setting_home('why_clinic_3') }}</h5>
+                                    <p class="card-text">{{ site_setting_home('why_clinic_text_3') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -192,8 +192,8 @@
                                 <img src="{{ asset('assets/images/sand_clock.svg') }}" class=" mx-auto object-fit-cover"
                                     width="60" alt="...">
                                 <div class="card-body text-center">
-                                    <h5 class="card-title">{{ site_setting('why_clinic_4') }}</h5>
-                                    <p class="card-text">{{ site_setting('why_clinic_text_4') }}</p>
+                                    <h5 class="card-title">{{ site_setting_home('why_clinic_4') }}</h5>
+                                    <p class="card-text">{{ site_setting_home('why_clinic_text_4') }}</p>
                                 </div>
                             </div>
                         </div>
@@ -224,11 +224,11 @@
                                     <div class="card text-center rounded-4 card_hover">
                                         <img src="{{ asset($workshop->cover) }}"
                                             class="card-img-top w-100 rounded-4 border-bottom border-3 image_border object-fit-cover"
-                                            alt="{{ $workshop->title }}" />
+                                            alt="{{ $workshop->title ?? '--' }}" />
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $workshop->title }}</h5>
+                                            <h5 class="card-title">{{ $workshop->title ?? '--' }}</h5>
                                             <small class="text-secondary mt-2">
-                                                {{ $workshop->category->title }} <span class="mx-2">|</span>
+                                                {{ $workshop->category->title ?? '--' }} <span class="mx-2">|</span>
                                                 <i class="fa-regular fa-eye"></i>
                                                 {{ $workshop->views }} نفر
                                             </small>
@@ -269,9 +269,9 @@
                     <div class="card text-center rounded-4 shadow card_hover h-100">
                         <img src="{{ asset($category->image) }}"
                             class="card-img-top w-100 rounded-4 border-bottom object-fit-cover"
-                            alt="{{ $category->title }}" />
+                            alt="{{ $category->title ?? '--' }}" />
                         <div class="card-body">
-                            <h5 class="card-title">{{ $category->title }}</h5>
+                            <h5 class="card-title">{{ $category->title ?? '--' }}</h5>
                             <p class="card-text">
                                 {{ $category->short_description }}
                             </p>
@@ -306,18 +306,18 @@
                                     <a href="{{ route('blog', ['article' => $article]) }}">
                                         <img src="{{ asset($article->cover) }}"
                                             class="card-img-top w-100 rounded-4 border-bottom border-3 image_border object-fit-cover"
-                                            alt="{{ $article->title }}" />
+                                            alt="{{ $article->title ?? '--' }}" />
                                     </a>
                                     <div class="card-body pt-2 pb-0">
                                         <small class="text-secondary mt-0">
                                             <a href="{{ route('blog', ['article' => $article]) }}" class="text-reset">
-                                                {{ $article->category->title }} </a>
+                                                {{ $article->category->title ?? '--' }} </a>
                                             <span class="mx-2">|</span>
                                             <i class="fa-regular fa-eye"></i>
                                             {{ $article->view_count }} نفر
                                         </small>
                                         <a href="{{ route('blog', ['article' => $article]) }}" class="text-reset">
-                                            <h5 class="card-title mt-3 mb-0">{{ $article->title }}</h5>
+                                            <h5 class="card-title mt-3 mb-0">{{ $article->title ?? '--' }}</h5>
                                         </a>
                                         <p class="text-start text-secondary mt-0 pt-0">
                                             <small>{{ jdate($article->created_at)->format('%B %d، %Y') }}</small>
@@ -366,7 +366,7 @@
                                             @foreach ($psychologist->categories as $cat)
                                                 <li class="list-group-item p-1 border-0">
                                                     <i class="fa-regular fa-circle-check" style="color: #19a7ce"></i>
-                                                    {{ $cat->title }}
+                                                    {{ $cat->title ?? '--' }}
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -374,7 +374,7 @@
                                     <ul class="list-group list-group-horizontal pe-0 border-0">
                                         <li class="list-group-item border-0">
                                             <i class="fa-solid fa-location-dot ms-1" style="color: #19a7ce"></i>
-                                            مشاوره در {{ $psychologist->city->title }}
+                                            مشاوره در {{ $psychologist->city->title ?? '--' }}
                                         </li>
                                         @if ($psychologist->online_consultation)
                                             <li class="list-group-item border-0">
