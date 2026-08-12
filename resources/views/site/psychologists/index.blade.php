@@ -79,12 +79,12 @@
                                     <ul class="list-group list-group-horizontal pe-0 border-0">
                                         <li class="list-group-item border-0">
                                             <i class="fa-solid fa-location-dot ms-1" style="color: #19a7ce"></i>
-                                            مشاوره در {{ $psychologist->city->title }}
+                                            درمان حضوری در {{ $psychologist->city->title }}
                                         </li>
                                         @if ($psychologist->online_consultation)
                                             <li class="list-group-item border-0">
                                                 <i class="fa-solid fa-globe ms-1" style="color: #19a7ce"></i>
-                                                مشاوره آنلاین
+                                                درمان آنلاین
                                             </li>
                                         @endif
                                     </ul>

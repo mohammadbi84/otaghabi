@@ -11,7 +11,7 @@
         <div class="row border bg-white">
             <div class="col-md-4 p-3">
                 <div id="info" class="bg-white p-3 d-flex flex-column align-items-center justify-content-center h-100">
-                    <img src="{{ asset('assets/images/logo_full.jpg') }}" class="shadow rounded main-logo"
+                    <img src="{{ asset('assets/images/logo2.png') }}" class="rounded main-logo"
                         alt="کلینیک مشاوره اتاق آبی" width="130">
                     <h3 class="mb-3 mt-4 border-bottom border-blue border-3 ">کلینیک مشاوره آتاق آبی</h3>
                     <p class="text-center">
@@ -374,12 +374,12 @@
                                     <ul class="list-group list-group-horizontal pe-0 border-0">
                                         <li class="list-group-item border-0">
                                             <i class="fa-solid fa-location-dot ms-1" style="color: #19a7ce"></i>
-                                            مشاوره در {{ $psychologist->city->title ?? '--' }}
+                                            درمان حضوری در {{ $psychologist->city->title ?? '--' }}
                                         </li>
                                         @if ($psychologist->online_consultation)
                                             <li class="list-group-item border-0">
                                                 <i class="fa-solid fa-globe ms-1" style="color: #19a7ce"></i>
-                                                مشاوره آنلاین
+                                                درمان آنلاین
                                             </li>
                                         @endif
                                     </ul>

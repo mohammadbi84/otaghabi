@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -146,6 +147,11 @@ class ArticleController extends Controller
             $article->save();
         }
 
-        return view('site.blogs.show', compact('article'));
+        $psychologists = User::where('role', 'psychologist')->where('online_consultation', true)->whereHas('categories', function ($query) use ($article) {
+            $query->where('categories.id', $article->category_id);
+        })->get();
+
+
+        return view('site.blogs.show', compact('article','psychologists'));
     }
 }
