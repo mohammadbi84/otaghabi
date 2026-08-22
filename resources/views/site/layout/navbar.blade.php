@@ -113,11 +113,11 @@
                     </a>
                     <ul class="dropdown-menu navbar-dropdown-menu text-end">
                         <li>
-                            <a class="dropdown-item px-2 py-2" href="{{ route('psychologists') }}">روانشناسان یزد</a>
+                            <a class="dropdown-item px-2 py-2" href="{{ route('psychologists') }}">درمان در یزد</a>
                         </li>
                         <li>
                             <a class="dropdown-item px-2 py-2"
-                                href="{{ route('psychologists', ['online' => true]) }}">روانشناسان آنلاین</a>
+                                href="{{ route('psychologists', ['online' => true]) }}">درمان آنلاین</a>
                         </li>
                     </ul>
                 </li>
