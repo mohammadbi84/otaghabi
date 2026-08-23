@@ -42,7 +42,8 @@
             @if ($psychologists->count())
                 <div class="d-blok p-2 mt-5">
                     <h4 class="text-center">
-                        <span class="px-3 border-bottom border-3" style="border-color: #afd3e2 !important">درمانگر های مرتبط</span>
+                        <span class="px-3 border-bottom border-3" style="border-color: #afd3e2 !important">درمانگر های
+                            مرتبط</span>
                     </h4>
                 </div>
                 <div class="row row-cols-md-4 mt-2 justify-content-md-center">
@@ -79,14 +80,15 @@
                                                 </ul>
                                             </div>
                                             <ul class="list-group list-group-horizontal pe-0 border-0">
-                                                <li class="list-group-item border-0">
-                                                    <i class="fa-solid fa-location-dot ms-1" style="color: #19a7ce"></i>
-                                                    درمان حضوری در {{ $psychologist->city->title ?? '--' }}
-                                                </li>
                                                 @if ($psychologist->online_consultation)
                                                     <li class="list-group-item border-0">
                                                         <i class="fa-solid fa-globe ms-1" style="color: #19a7ce"></i>
                                                         درمان آنلاین
+                                                    </li>
+                                                @else
+                                                    <li class="list-group-item border-0">
+                                                        <i class="fa-solid fa-location-dot ms-1" style="color: #19a7ce"></i>
+                                                        درمان حضوری در {{ $psychologist->city->title ?? '--' }}
                                                     </li>
                                                 @endif
                                             </ul>

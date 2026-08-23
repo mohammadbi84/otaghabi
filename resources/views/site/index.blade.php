@@ -11,8 +11,8 @@
         <div class="row border bg-white">
             <div class="col-md-4 p-3">
                 <div id="info" class="bg-white p-3 d-flex flex-column align-items-center justify-content-center h-100">
-                    <img src="{{ asset('assets/images/logo2.png') }}" class="rounded main-logo"
-                        alt="کلینیک مشاوره اتاق آبی" width="130">
+                    <img src="{{ asset('assets/images/logo2.png') }}" class="rounded main-logo" alt="کلینیک مشاوره اتاق آبی"
+                        width="130">
                     <h3 class="mb-3 mt-4 border-bottom border-blue border-3 ">کلینیک مشاوره آتاق آبی</h3>
                     <p class="text-center">
                         {{ site_setting_home('slider_text') }}
@@ -73,7 +73,8 @@
                 <div class="col-md-3 p-3">
                     <div class="card text-center rounded-4 shadow card_hover h-100">
                         <img src="{{ asset($cat->image) }}"
-                            class="card-img-top w-100 rounded-4 border-bottom object-fit-cover" alt="{{ $cat->title ?? '--' }}" />
+                            class="card-img-top w-100 rounded-4 border-bottom object-fit-cover"
+                            alt="{{ $cat->title ?? '--' }}" />
                         <div class="card-body">
                             <h5 class="card-title">{{ $cat->title ?? '--' }}</h5>
                             <p class="card-text">
@@ -101,26 +102,34 @@
                     </div>
                     <div class="row row-cols-2 mission-row p-0 pt-4 mt-3 bg-white rounded-4">
                         <div class="col mb-4">
-                            <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
-                                <span class="mission-number" data-target="{{ site_setting_home('mission_number_1') }}">0</span>
+                            <div
+                                class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
+                                <span class="mission-number"
+                                    data-target="{{ site_setting_home('mission_number_1') }}">0</span>
                                 <span>{{ site_setting_home('mission_text_1') }}</span>
                             </div>
                         </div>
                         <div class="col mb-4">
-                            <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
-                                <span class="mission-number" data-target="{{ site_setting_home('mission_number_2') }}">0</span>
+                            <div
+                                class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
+                                <span class="mission-number"
+                                    data-target="{{ site_setting_home('mission_number_2') }}">0</span>
                                 <span>{{ site_setting_home('mission_text_2') }}</span>
                             </div>
                         </div>
                         <div class="col mb-4">
-                            <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
-                                <span class="mission-number" data-target="{{ site_setting_home('mission_number_3') }}">0</span>
+                            <div
+                                class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
+                                <span class="mission-number"
+                                    data-target="{{ site_setting_home('mission_number_3') }}">0</span>
                                 <span>{{ site_setting_home('mission_text_3') }}</span>
                             </div>
                         </div>
                         <div class="col mb-4">
-                            <div class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
-                                <span class="mission-number" data-target="{{ site_setting_home('mission_number_4') }}">0</span>
+                            <div
+                                class="d-flex text-center flex-column justify-content-start align-items-center p-3 px-4 py-3 gap-1 rounded-4 border h-100">
+                                <span class="mission-number"
+                                    data-target="{{ site_setting_home('mission_number_4') }}">0</span>
                                 <span>{{ site_setting_home('mission_text_4') }}</span>
                             </div>
                         </div>
@@ -372,14 +381,15 @@
                                         </ul>
                                     </div>
                                     <ul class="list-group list-group-horizontal pe-0 border-0">
-                                        <li class="list-group-item border-0">
-                                            <i class="fa-solid fa-location-dot ms-1" style="color: #19a7ce"></i>
-                                            درمان حضوری در {{ $psychologist->city->title ?? '--' }}
-                                        </li>
                                         @if ($psychologist->online_consultation)
                                             <li class="list-group-item border-0">
                                                 <i class="fa-solid fa-globe ms-1" style="color: #19a7ce"></i>
                                                 درمان آنلاین
+                                            </li>
+                                        @else
+                                            <li class="list-group-item border-0">
+                                                <i class="fa-solid fa-location-dot ms-1" style="color: #19a7ce"></i>
+                                                درمان حضوری در {{ $psychologist->city->title ?? '--' }}
                                             </li>
                                         @endif
                                     </ul>

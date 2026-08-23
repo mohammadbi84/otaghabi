@@ -61,7 +61,8 @@
                                 <div
                                     class="card-body h-100 p-4 pb-0 d-flex flex-wrap align-content-around justify-content-center">
                                     <div class="row d-flex flex-wrap align-content-around">
-                                        <a href="{{ route('psychologist', ['psychologist' => $psychologist]) }}" class="text-reset">
+                                        <a href="{{ route('psychologist', ['psychologist' => $psychologist]) }}"
+                                            class="text-reset">
                                             <h5 class="card-title">{{ $psychologist->name }}</h5>
                                         </a>
                                         <small class="card-text text-secondary me-2">
@@ -77,19 +78,21 @@
                                         </ul>
                                     </div>
                                     <ul class="list-group list-group-horizontal pe-0 border-0">
-                                        <li class="list-group-item border-0">
-                                            <i class="fa-solid fa-location-dot ms-1" style="color: #19a7ce"></i>
-                                            درمان حضوری در {{ $psychologist->city->title }}
-                                        </li>
                                         @if ($psychologist->online_consultation)
                                             <li class="list-group-item border-0">
                                                 <i class="fa-solid fa-globe ms-1" style="color: #19a7ce"></i>
                                                 درمان آنلاین
                                             </li>
+                                        @else
+                                            <li class="list-group-item border-0">
+                                                <i class="fa-solid fa-location-dot ms-1" style="color: #19a7ce"></i>
+                                                درمان حضوری در {{ $psychologist->city->title }}
+                                            </li>
                                         @endif
                                     </ul>
                                     <div class="row mt-3 d-flex justify-content-end w-100">
-                                        <a href="{{ route('psychologist', ['psychologist' => $psychologist]) }}" class="btn btn-DarkBlue p-2">دیدن پروفایل و دریافت نوبت
+                                        <a href="{{ route('psychologist', ['psychologist' => $psychologist]) }}"
+                                            class="btn btn-DarkBlue p-2">دیدن پروفایل و دریافت نوبت
                                             مشاوره</a>
                                     </div>
                                 </div>
